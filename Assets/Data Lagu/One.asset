@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfcaca56a6a2da94188254bcb120d582, type: 3}
+  m_Name: One
+  m_EditorClassIdentifier: Assembly-CSharp::SongData
+  judulLagu: 
+  namaArtis: 
+  fileAudio: {fileID: 8300000, guid: 77ad0d509a8fc144184b6a3fd29a4e1a, type: 3}
+  fileChart: {fileID: 4900000, guid: fc1ead79d00fbd541b4faf5c15ffc4e1, type: 3}
+  delayMulai: 0
+  kecepatanScroll: 5
+  penyesuaianOffset: 1.3
