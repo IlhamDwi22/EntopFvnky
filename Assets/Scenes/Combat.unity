@@ -572,9 +572,9 @@ Transform:
   m_GameObject: {fileID: 628441805}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.94, y: -0.6500003, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 3.94, y: -1.0000002, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 687593046}
   - {fileID: 655854417}
@@ -1133,9 +1133,9 @@ Transform:
   m_GameObject: {fileID: 1383707333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.93, y: -0.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -5.93, y: -0.8, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 324236628}
   - {fileID: 203624841}
@@ -1351,7 +1351,7 @@ MonoBehaviour:
   - {fileID: -7451953295746623981, guid: ed5a7711b77f9bb4eb09795961e8914a, type: 3}
   - {fileID: 4793074969510804509, guid: ed5a7711b77f9bb4eb09795961e8914a, type: 3}
   - {fileID: 4397636249099975194, guid: ed5a7711b77f9bb4eb09795961e8914a, type: 3}
-  spawnAheadTime: 6
+  spawnAheadTime: 12
   speed: 0
   audioOffsetAdjustment: 0
 --- !u!1 &1637499715

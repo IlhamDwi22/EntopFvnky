@@ -16,4 +16,4 @@ MonoBehaviour:
   visualMusuh: {fileID: 0}
   tingkatKesulitan: 1
   daftarLagu:
-  - {fileID: 11400000, guid: f42b9e0371d0ab54fbd0fc312dc60064, type: 2}
+  - {fileID: 11400000, guid: 6884e62e09ccf674d9845ff53d2a5fab, type: 2}

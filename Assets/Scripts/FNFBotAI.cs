@@ -8,9 +8,7 @@ public class FNFBotAI : MonoBehaviour
     public Text botScoreLegacy;
     public TextMeshProUGUI botScoreTMP;
 
-    // Logika Probabilitas Bot (Dalam Persen %)
     private float botHitChance = 100f; 
-
     private int botScore = 0;
     private int botCombo = 0; 
 
@@ -21,14 +19,12 @@ public class FNFBotAI : MonoBehaviour
 
     public void TerapkanDifficulty(int tingkatKesulitan)
     {
-        // Kesulitan 1 = 40% sukses (Sangat bodoh). Kesulitan 100 = 100% sukses (Sempurna).
         float factor = tingkatKesulitan / 100f; 
         botHitChance = Mathf.Lerp(40f, 100f, factor);
-        
-        Debug.Log($"[BotAI] Musuh Level {tingkatKesulitan} | Akurasi Musuh: {botHitChance}%");
     }
 
-    public void EvaluateBotNote(FNFNoteController note)
+    // Fungsi ini sekarang mengembalikan 'bool' agar panah tahu bahwa Bot sukses menekannya
+    public bool EvaluateBotNote(FNFNoteController note)
     {
         float randomRoll = Random.Range(0f, 100f);
 
@@ -36,20 +32,20 @@ public class FNFBotAI : MonoBehaviour
         {
             botCombo++;
             botScore += 350;
+            UpdateBotUI();
+            return true; // Berhasil! (Jika hold note, bot akan menahannya)
         }
         else
         {
-            // Musuh melakukan MISS
             botCombo = 0;
             if (botScore > 0) 
             {
                 botScore -= 50; 
                 if (botScore < 0) botScore = 0;
             }
-            Debug.Log("[BotAI] Meleset! Musuh melakukan MISS!");
+            UpdateBotUI();
+            return false; // Meleset!
         }
-
-        UpdateBotUI();
     }
 
     private void UpdateBotUI()

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfcaca56a6a2da94188254bcb120d582, type: 3}
-  m_Name: Shiloutte
+  m_Name: Its iIt Answer
   m_EditorClassIdentifier: Assembly-CSharp::SongData
-  judulLagu: shiloute
+  judulLagu: 
   namaArtis: 
-  fileAudio: {fileID: 8300000, guid: e4353cb2761722644a8fdf8fbf41f056, type: 3}
-  fileChart: {fileID: 4900000, guid: 07e2a53fcbed3fc40bd2d9cf38daf635, type: 3}
-  delayMulai: 0
+  fileAudio: {fileID: 8300000, guid: e49dd8863393f9848807ccc0140c28d4, type: 3}
+  fileChart: {fileID: 4900000, guid: 62319580c3cd7154abb2fd2ce554b411, type: 3}
+  delayMulai: 1
   kecepatanScroll: 10
   penyesuaianOffset: 0

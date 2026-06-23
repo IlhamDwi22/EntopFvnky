@@ -24,8 +24,10 @@ public class FNFScoring : MonoBehaviour
     private int playerCombo = 0;
     
     private List<FNFNoteController> activePlayerNotes = new List<FNFNoteController>();
+    
+    // VARIABEL BARU: Melacak Note mana yang sedang di-hold di masing-masing jalur (0-3)
+    private FNFNoteController[] currentlyHeldNotes = new FNFNoteController[4];
 
-    // --- SISTEM ANIMASI BARU YANG ANTI-NYANGKUT ---
     private Vector3[] baseReceptorScales = new Vector3[4];
     private float[] receptorAnimTimers = new float[4];
     private float animDuration = 0.15f;
@@ -37,8 +39,6 @@ public class FNFScoring : MonoBehaviour
         UpdatePlayerUI();
         ClearFeedback();
         
-        // Mengunci ukuran asli panah (contoh: 0.2) tepat saat game dimulai.
-        // Tidak akan bisa tertimpa oleh animasi apapun.
         for (int i = 0; i < 4; i++)
         {
             if (FNFConductor.Instance != null && FNFConductor.Instance.playerReceptors[i] != null)
@@ -55,7 +55,6 @@ public class FNFScoring : MonoBehaviour
     public void TerapkanDifficulty(int tingkatKesulitan)
     {
         float factor = tingkatKesulitan / 100f; 
-
         hitWindow = Mathf.Lerp(0.25f, 0.10f, factor); 
         sickWindow = Mathf.Lerp(0.08f, 0.03f, factor);
         goodWindow = Mathf.Lerp(0.15f, 0.07f, factor);
@@ -64,13 +63,18 @@ public class FNFScoring : MonoBehaviour
 
     private void Update()
     {
-        // 1. Deteksi Input Pemain
+        // 1. Deteksi Tekanan Awal (Hit Kepala)
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) TryHitNote(0);
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) TryHitNote(1);
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) TryHitNote(2);
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) TryHitNote(3);
 
-        // 2. Jalankan pemulihan animasi setiap frame
+        // 2. Deteksi Pelepasan Tombol (Selesai Nge-Hold)
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) TryReleaseNote(0);
+        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) TryReleaseNote(1);
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)) TryReleaseNote(2);
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) TryReleaseNote(3);
+
         UpdateReceptorAnimations();
     }
 
@@ -81,10 +85,9 @@ public class FNFScoring : MonoBehaviour
 
         foreach (FNFNoteController note in activePlayerNotes)
         {
-            if (note == null) continue;
+            if (note == null || note.isBeingHeld) continue; // Abaikan yang sudah ditekan
             
             FNFNoteData data = note.GetDetails();
-            
             if (!data.isBot && data.lane == inputLane)
             {
                 float timeDifference = Mathf.Abs(data.hitTime - FNFConductor.Instance.currentSongTime);
@@ -100,37 +103,51 @@ public class FNFScoring : MonoBehaviour
         {
             playerCombo++;
             
-            if (smallestTimeDifference <= sickWindow)
-            {
-                playerScore += 350;
-                ShowFeedback("SICK!!");
-                TriggerReceptorEffect(inputLane, "SICK");
-            }
-            else if (smallestTimeDifference <= goodWindow)
-            {
-                playerScore += 200;
-                ShowFeedback("GOOD!");
-                TriggerReceptorEffect(inputLane, "GOOD");
-            }
-            else
-            {
-                playerScore += 50;
-                ShowFeedback("BAD");
-                TriggerReceptorEffect(inputLane, "BAD");
-            }
+            if (smallestTimeDifference <= sickWindow) { playerScore += 350; ShowFeedback("SICK!!"); TriggerReceptorEffect(inputLane, "SICK"); }
+            else if (smallestTimeDifference <= goodWindow) { playerScore += 200; ShowFeedback("GOOD!"); TriggerReceptorEffect(inputLane, "GOOD"); }
+            else { playerScore += 50; ShowFeedback("BAD"); TriggerReceptorEffect(inputLane, "BAD"); }
 
             UpdatePlayerUI();
             
-            activePlayerNotes.Remove(closestNote);
-            Destroy(closestNote.gameObject);
+            // CEK APAKAH INI HOLD NOTE
+            if (closestNote.GetDetails().duration > 0)
+            {
+                closestNote.isBeingHeld = true;
+                currentlyHeldNotes[inputLane] = closestNote;
+            }
+            else
+            {
+                closestNote.DestroyNoteAndRemove(); // Hancurkan karena note biasa
+            }
         }
         else
         {
-            // Miss karena memencet saat kosong (Ghost Tapping)
+            // Ghost Tapping
             playerCombo = 0;
             UpdatePlayerUI();
             ShowFeedback("MISS!");
             TriggerReceptorEffect(inputLane, "MISS");
+        }
+    }
+
+    private void TryReleaseNote(int lane)
+    {
+        // Mengecek apakah kita sedang nge-hold note di jalur ini
+        if (currentlyHeldNotes[lane] != null)
+        {
+            FNFNoteController heldNote = currentlyHeldNotes[lane];
+            float sisaWaktu = (heldNote.GetDetails().hitTime + heldNote.GetDetails().duration) - FNFConductor.Instance.currentSongTime;
+            
+            // Jika dilepas sebelum sisa waktunya habis (toleransi 0.1 detik)
+            if (sisaWaktu > 0.1f) 
+            {
+                playerCombo = 0; // Patahkan Combo karena terlalu cepat dilepas
+                ShowFeedback("MISS!");
+                UpdatePlayerUI();
+            }
+            
+            heldNote.DestroyNoteAndRemove();
+            currentlyHeldNotes[lane] = null;
         }
     }
 
@@ -152,7 +169,6 @@ public class FNFScoring : MonoBehaviour
             playerScore -= missPenalty; 
             if (playerScore < 0) playerScore = 0; 
         }
-        
         UpdatePlayerUI();
         ShowFeedback("MISS!");
     }
@@ -166,7 +182,6 @@ public class FNFScoring : MonoBehaviour
         SpriteRenderer sr = receptor.GetComponent<SpriteRenderer>();
         if (sr == null) return;
 
-        // Tentukan target warna dan puncakan ukuran yang baru dikalikan dengan ukuran asli
         if (rating == "SICK" || rating == "GOOD")
         {
             currentTargetColors[lane] = new Color(0.5f, 1f, 1f, 1f); 
@@ -183,11 +198,8 @@ public class FNFScoring : MonoBehaviour
             currentTargetScales[lane] = baseReceptorScales[lane] * 0.8f;            
         }
 
-        // Terapkan lompatan animasi seketika di frame ini
         sr.color = currentTargetColors[lane];
         receptor.localScale = currentTargetScales[lane];
-
-        // Isi penuh bensin waktu animasinya
         receptorAnimTimers[lane] = animDuration;
     }
 
@@ -195,31 +207,42 @@ public class FNFScoring : MonoBehaviour
     {
         if (FNFConductor.Instance == null || FNFConductor.Instance.playerReceptors == null) return;
 
-        // Tiap frame, paksa panah mengecil kembali ke titik asalnya secara perlahan
         for (int i = 0; i < 4; i++)
         {
+            // Cek apakah tombol sedang ditahan secara fisik
+            bool isKeyPressed = false;
+            if (i == 0 && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))) isKeyPressed = true;
+            if (i == 1 && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))) isKeyPressed = true;
+            if (i == 2 && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))) isKeyPressed = true;
+            if (i == 3 && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))) isKeyPressed = true;
+
+            Transform receptor = FNFConductor.Instance.playerReceptors[i];
+            if (receptor == null) continue;
+            
+            SpriteRenderer sr = receptor.GetComponent<SpriteRenderer>();
+            if (sr == null) continue;
+
+            if (isKeyPressed)
+            {
+                // JIKA DITAHAN: Jangan kurangi timer! Pertahankan warna terang dan ukurannya!
+                sr.color = currentTargetColors[i] != Color.clear ? currentTargetColors[i] : Color.white;
+                receptor.localScale = currentTargetScales[i] != Vector3.zero ? currentTargetScales[i] : baseReceptorScales[i];
+                continue; 
+            }
+
+            // JIKA TOMBOL DILEPAS: Perlahan kembalikan ke semula
             if (receptorAnimTimers[i] > 0)
             {
                 receptorAnimTimers[i] -= Time.deltaTime;
-                
-                Transform receptor = FNFConductor.Instance.playerReceptors[i];
-                if (receptor == null) continue;
-                
-                SpriteRenderer sr = receptor.GetComponent<SpriteRenderer>();
-                if (sr == null) continue;
 
                 if (receptorAnimTimers[i] <= 0)
                 {
-                    // Waktu habis, kunci absolut ke kondisi normal
                     sr.color = Color.white;
                     receptor.localScale = baseReceptorScales[i];
                 }
                 else
                 {
-                    // Menghitung persentase dari 0 hingga 1
                     float t = 1f - (receptorAnimTimers[i] / animDuration); 
-                    
-                    // Transisi mulus menyusut kembali ke skala aslinya
                     sr.color = Color.Lerp(currentTargetColors[i], Color.white, t);
                     receptor.localScale = Vector3.Lerp(currentTargetScales[i], baseReceptorScales[i], t);
                 }
@@ -238,20 +261,10 @@ public class FNFScoring : MonoBehaviour
     {
         if (feedbackLegacy != null) feedbackLegacy.text = message;
         if (feedbackTMP != null) feedbackTMP.text = message;
-        
         StopAllCoroutines();
         StartCoroutine(ClearFeedbackRoutine());
     }
 
-    private void ClearFeedback()
-    {
-        if (feedbackLegacy != null) feedbackLegacy.text = "";
-        if (feedbackTMP != null) feedbackTMP.text = "";
-    }
-
-    private IEnumerator ClearFeedbackRoutine()
-    {
-        yield return new WaitForSeconds(0.5f);
-        ClearFeedback();
-    }
+    private void ClearFeedback() { if (feedbackLegacy != null) feedbackLegacy.text = ""; if (feedbackTMP != null) feedbackTMP.text = ""; }
+    private IEnumerator ClearFeedbackRoutine() { yield return new WaitForSeconds(0.5f); ClearFeedback(); }
 }
