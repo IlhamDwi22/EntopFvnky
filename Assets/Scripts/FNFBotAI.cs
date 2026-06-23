@@ -9,7 +9,10 @@ public class FNFBotAI : MonoBehaviour
     public TextMeshProUGUI botScoreTMP;
 
     private float botHitChance = 100f; 
-    private int botScore = 0;
+    
+    // DIUBAH MENJADI PUBLIC AGAR BISA DIBACA SAAT LAGU SELESAI
+    public int botScore = 0;
+    
     private int botCombo = 0; 
 
     private void Start()
@@ -23,7 +26,6 @@ public class FNFBotAI : MonoBehaviour
         botHitChance = Mathf.Lerp(40f, 100f, factor);
     }
 
-    // Fungsi ini sekarang mengembalikan 'bool' agar panah tahu bahwa Bot sukses menekannya
     public bool EvaluateBotNote(FNFNoteController note)
     {
         float randomRoll = Random.Range(0f, 100f);
@@ -33,7 +35,7 @@ public class FNFBotAI : MonoBehaviour
             botCombo++;
             botScore += 350;
             UpdateBotUI();
-            return true; // Berhasil! (Jika hold note, bot akan menahannya)
+            return true; 
         }
         else
         {
@@ -44,7 +46,7 @@ public class FNFBotAI : MonoBehaviour
                 if (botScore < 0) botScore = 0;
             }
             UpdateBotUI();
-            return false; // Meleset!
+            return false; 
         }
     }
 

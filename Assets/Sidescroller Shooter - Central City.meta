@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 35a52b8f8d2b60243afa4b86f73a768b
+=======
+guid: 6eeee16de7a698d40acd501bdbf182d1
+>>>>>>> origin/abi
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

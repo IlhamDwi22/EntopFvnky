@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &8157832
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.89175
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.27532
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160044554357820563, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_Name
+      value: PREFAB_FADER_SYSTEM
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
 --- !u!1 &203624840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1213,7 @@ GameObject:
   - component: {fileID: 1625450909}
   - component: {fileID: 1625450908}
   - component: {fileID: 1625450907}
-  - component: {fileID: 1625450906}
+  - component: {fileID: 1625450910}
   m_Layer: 0
   m_Name: RHYTHM_SYSTEM
   m_TagString: Untagged
@@ -1276,19 +1333,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1625450906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625450903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b137d4eb26b8c44293383de94327064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatTester
-  musuhTes: {fileID: 11400000, guid: 988c89a988d6eee4a8d99268ab1c623d, type: 2}
 --- !u!114 &1625450907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,6 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FNFBotAI
   botScoreLegacy: {fileID: 649450713}
   botScoreTMP: {fileID: 0}
+  botScore: 0
 --- !u!114 &1625450908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,6 +1364,7 @@ MonoBehaviour:
   playerScoreTMP: {fileID: 0}
   feedbackLegacy: {fileID: 784647603}
   feedbackTMP: {fileID: 0}
+  playerScore: 0
 --- !u!114 &1625450909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,9 +1397,22 @@ MonoBehaviour:
   - {fileID: -7451953295746623981, guid: ed5a7711b77f9bb4eb09795961e8914a, type: 3}
   - {fileID: 4793074969510804509, guid: ed5a7711b77f9bb4eb09795961e8914a, type: 3}
   - {fileID: 4397636249099975194, guid: ed5a7711b77f9bb4eb09795961e8914a, type: 3}
-  spawnAheadTime: 12
+  spawnAheadTime: 14
   speed: 0
   audioOffsetAdjustment: 0
+--- !u!114 &1625450910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625450903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b137d4eb26b8c44293383de94327064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatTester
+  musuhTes: {fileID: 11400000, guid: 988c89a988d6eee4a8d99268ab1c623d, type: 2}
 --- !u!1 &1637499715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,3 +1787,4 @@ SceneRoots:
   - {fileID: 565662299}
   - {fileID: 1383707334}
   - {fileID: 628441808}
+  - {fileID: 8157832}

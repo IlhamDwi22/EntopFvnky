@@ -19,8 +19,7 @@ public class FNFConductor : MonoBehaviour
     [Tooltip("Masukkan 4 gambar panah secara berurutan: 0=Kiri, 1=Bawah, 2=Atas, 3=Kanan")]
     public Sprite[] noteSprites = new Sprite[4];
 
-    [Header("Pengaturan Jarak Spawn (Baru)")]
-    [Tooltip("Semakin besar angkanya, semakin tinggi panah muncul di luar batas kamera atas (disarankan 3 atau 4)")]
+    [Header("Pengaturan Jarak Spawn")]
     public float spawnAheadTime = 3f;
 
     [HideInInspector] public float speed; 
@@ -28,6 +27,8 @@ public class FNFConductor : MonoBehaviour
 
     public float currentSongTime { get; private set; }
     private bool isSongPlaying = false;
+    private bool hasStartedPlaying = false;
+    private bool battleEnded = false; 
     
     private List<FNFNoteData> sequencedNotes = new List<FNFNoteData>();
     private int nextNoteIndex = 0;
@@ -41,6 +42,9 @@ public class FNFConductor : MonoBehaviour
 
     private void Start()
     {
+        // PENGAMAN UTAMA: Pastikan waktu Unity berjalan 100% normal (tidak freeze dari overworld)
+        Time.timeScale = 1f;
+
         if (GameManager.musuhPilihanSaatIni == null || GameManager.musuhPilihanSaatIni.daftarLagu.Length == 0)
         {
             Debug.LogError("[FNFConductor] Gagal! Tidak ada data musuh atau lagunya kosong.");
@@ -75,27 +79,70 @@ public class FNFConductor : MonoBehaviour
 
     private void Update()
     {
-        if (!isSongPlaying) return;
+        if (!isSongPlaying || battleEnded) return;
 
-        if (musicSource != null && musicSource.isPlaying)
+        if (musicSource != null)
         {
-            currentSongTime = musicSource.time + audioOffsetAdjustment;
-        }
-        else
-        {
-            introTimer += Time.deltaTime;
-            currentSongTime = introTimer;
-
-            if (introTimer >= 0 && musicSource != null && musicSource.clip != null && !musicSource.isPlaying)
+            // --- REFORMASI LOGIKA TRACKING AUDIO (ANTI-STUCK) ---
+            if (!hasStartedPlaying)
             {
-                musicSource.Play();
+                // Jalankan hitung mundur intro (Aman sekalipun songDelay bernilai 0)
+                introTimer += Time.deltaTime;
+                currentSongTime = introTimer;
+
+                if (introTimer >= 0)
+                {
+                    if (musicSource.clip != null && !musicSource.isPlaying)
+                    {
+                        musicSource.Play();
+                    }
+                    hasStartedPlaying = true; // Kunci status agar masuk ke mode tracking musik
+                }
+            }
+            else
+            {
+                // Jika musik sedang menyala berjalan, ikuti posisi waktu asli dari file audio
+                if (musicSource.isPlaying)
+                {
+                    currentSongTime = musicSource.time + audioOffsetAdjustment;
+                }
+                else
+                {
+                    // Jika musik terdeteksi mati setelah sempat berputar, artinya lagu selesai secara natural
+                    EndBattle();
+                }
             }
         }
 
+        // Spawn panah berdasarkan pergerakan currentSongTime yang sekarang dijamin terus bertambah
         while (nextNoteIndex < sequencedNotes.Count && sequencedNotes[nextNoteIndex].hitTime - currentSongTime <= spawnAheadTime)
         {
             SpawnFNFNote(sequencedNotes[nextNoteIndex]);
             nextNoteIndex++;
+        }
+    }
+
+    private void EndBattle()
+    {
+        battleEnded = true;
+        isSongPlaying = false;
+        
+        Debug.Log("[FNFConductor] Lagu Selesai! Memproses skor dan kembali ke Overworld...");
+
+        GlobalBattleState.kembaliDariBattle = true;
+
+        int skorPlayer = scoringSystem != null ? scoringSystem.playerScore : 0;
+        int skorBot = botAI != null ? botAI.botScore : 0;
+
+        GlobalBattleState.playerMenang = (skorPlayer >= skorBot);
+
+        if (SceneFader.Instance != null)
+        {
+            SceneFader.Instance.PindahSceneDenganFade(GlobalBattleState.sceneOverworldAsal);
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(GlobalBattleState.sceneOverworldAsal);
         }
     }
 

@@ -14,18 +14,16 @@ public class FNFScoring : MonoBehaviour
     public Text feedbackLegacy;
     public TextMeshProUGUI feedbackTMP;
 
-    // Nilai toleransi Player
     private float hitWindow = 0.15f; 
     private float sickWindow = 0.05f;
     private float goodWindow = 0.1f;
     private int missPenalty = 50;
 
-    private int playerScore = 0;
+    // DIUBAH MENJADI PUBLIC AGAR BISA DIBACA SAAT LAGU SELESAI
+    public int playerScore = 0; 
     private int playerCombo = 0;
     
     private List<FNFNoteController> activePlayerNotes = new List<FNFNoteController>();
-    
-    // VARIABEL BARU: Melacak Note mana yang sedang di-hold di masing-masing jalur (0-3)
     private FNFNoteController[] currentlyHeldNotes = new FNFNoteController[4];
 
     private Vector3[] baseReceptorScales = new Vector3[4];
@@ -63,13 +61,11 @@ public class FNFScoring : MonoBehaviour
 
     private void Update()
     {
-        // 1. Deteksi Tekanan Awal (Hit Kepala)
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) TryHitNote(0);
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) TryHitNote(1);
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) TryHitNote(2);
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) TryHitNote(3);
 
-        // 2. Deteksi Pelepasan Tombol (Selesai Nge-Hold)
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) TryReleaseNote(0);
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) TryReleaseNote(1);
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)) TryReleaseNote(2);
@@ -85,7 +81,7 @@ public class FNFScoring : MonoBehaviour
 
         foreach (FNFNoteController note in activePlayerNotes)
         {
-            if (note == null || note.isBeingHeld) continue; // Abaikan yang sudah ditekan
+            if (note == null || note.isBeingHeld) continue; 
             
             FNFNoteData data = note.GetDetails();
             if (!data.isBot && data.lane == inputLane)
@@ -109,7 +105,6 @@ public class FNFScoring : MonoBehaviour
 
             UpdatePlayerUI();
             
-            // CEK APAKAH INI HOLD NOTE
             if (closestNote.GetDetails().duration > 0)
             {
                 closestNote.isBeingHeld = true;
@@ -117,12 +112,11 @@ public class FNFScoring : MonoBehaviour
             }
             else
             {
-                closestNote.DestroyNoteAndRemove(); // Hancurkan karena note biasa
+                closestNote.DestroyNoteAndRemove(); 
             }
         }
         else
         {
-            // Ghost Tapping
             playerCombo = 0;
             UpdatePlayerUI();
             ShowFeedback("MISS!");
@@ -132,16 +126,14 @@ public class FNFScoring : MonoBehaviour
 
     private void TryReleaseNote(int lane)
     {
-        // Mengecek apakah kita sedang nge-hold note di jalur ini
         if (currentlyHeldNotes[lane] != null)
         {
             FNFNoteController heldNote = currentlyHeldNotes[lane];
             float sisaWaktu = (heldNote.GetDetails().hitTime + heldNote.GetDetails().duration) - FNFConductor.Instance.currentSongTime;
             
-            // Jika dilepas sebelum sisa waktunya habis (toleransi 0.1 detik)
             if (sisaWaktu > 0.1f) 
             {
-                playerCombo = 0; // Patahkan Combo karena terlalu cepat dilepas
+                playerCombo = 0; 
                 ShowFeedback("MISS!");
                 UpdatePlayerUI();
             }
@@ -151,15 +143,8 @@ public class FNFScoring : MonoBehaviour
         }
     }
 
-    public void RegisterNoteInGame(FNFNoteController note)
-    {
-        if (!note.GetDetails().isBot) activePlayerNotes.Add(note);
-    }
-
-    public void RegisterNoteLeaveGame(FNFNoteController note)
-    {
-        if (activePlayerNotes.Contains(note)) activePlayerNotes.Remove(note);
-    }
+    public void RegisterNoteInGame(FNFNoteController note) { if (!note.GetDetails().isBot) activePlayerNotes.Add(note); }
+    public void RegisterNoteLeaveGame(FNFNoteController note) { if (activePlayerNotes.Contains(note)) activePlayerNotes.Remove(note); }
 
     public void RegisterPlayerMiss()
     {
@@ -209,7 +194,6 @@ public class FNFScoring : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            // Cek apakah tombol sedang ditahan secara fisik
             bool isKeyPressed = false;
             if (i == 0 && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))) isKeyPressed = true;
             if (i == 1 && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))) isKeyPressed = true;
@@ -224,17 +208,14 @@ public class FNFScoring : MonoBehaviour
 
             if (isKeyPressed)
             {
-                // JIKA DITAHAN: Jangan kurangi timer! Pertahankan warna terang dan ukurannya!
                 sr.color = currentTargetColors[i] != Color.clear ? currentTargetColors[i] : Color.white;
                 receptor.localScale = currentTargetScales[i] != Vector3.zero ? currentTargetScales[i] : baseReceptorScales[i];
                 continue; 
             }
 
-            // JIKA TOMBOL DILEPAS: Perlahan kembalikan ke semula
             if (receptorAnimTimers[i] > 0)
             {
                 receptorAnimTimers[i] -= Time.deltaTime;
-
                 if (receptorAnimTimers[i] <= 0)
                 {
                     sr.color = Color.white;
