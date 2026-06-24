@@ -1,17 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MusuhBaru", menuName = "FNF/Data Musuh")]
+[CreateAssetMenu(fileName = "DataMusuhBaru", menuName = "FNF/Data Musuh")]
 public class OpponentData : ScriptableObject
 {
-    [Header("Profil Musuh")]
-    public string namaMusuh;
-    public Sprite visualMusuh; 
-
-    [Header("Statistik Pertarungan")]
-    [Range(1, 100)]
-    [Tooltip("Tingkat kesulitan 1 (Sangat Mudah) hingga 100 (Sangat Sulit)")]
-    public int tingkatKesulitan = 50;
-
-    [Header("Daftar Lagu (Setlist)")]
+    public string namaMusuh = "Nama Musuh";
+    public Sprite visualMusuh;
+    
+    [Header("Animasi Karakter")]
+    [Tooltip("Masukkan Animator Controller khusus musuh ini ke sini")]
+    public RuntimeAnimatorController animasiMusuh;
+    
+    [Range(0, 100)] public int tingkatKesulitan = 50;
     public SongData[] daftarLagu;
 }

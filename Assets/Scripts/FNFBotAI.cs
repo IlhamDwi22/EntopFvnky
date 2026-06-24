@@ -8,16 +8,30 @@ public class FNFBotAI : MonoBehaviour
     public Text botScoreLegacy;
     public TextMeshProUGUI botScoreTMP;
 
+    [Header("Animasi Bot")]
+    public Animator botAnim;
+
     private float botHitChance = 100f; 
-    
-    // DIUBAH MENJADI PUBLIC AGAR BISA DIBACA SAAT LAGU SELESAI
     public int botScore = 0;
-    
     private int botCombo = 0; 
+    
+    private float botIdleTimer = 0f;
 
     private void Start()
     {
         UpdateBotUI();
+    }
+
+    private void Update()
+    {
+        if (botIdleTimer > 0)
+        {
+            botIdleTimer -= Time.deltaTime;
+            if (botIdleTimer <= 0 && botAnim != null)
+            {
+                botAnim.Play("Idle");
+            }
+        }
     }
 
     public void TerapkanDifficulty(int tingkatKesulitan)
@@ -35,6 +49,11 @@ public class FNFBotAI : MonoBehaviour
             botCombo++;
             botScore += 350;
             UpdateBotUI();
+            
+            // Bot akan menahan posenya selama durasi panah tersebut (atau 0.4 detik jika panah biasa)
+            float tahanAnimasi = note.GetDetails().duration > 0 ? note.GetDetails().duration : 0.4f;
+            MainkanAnimasiBot(note.GetDetails().lane, tahanAnimasi);
+            
             return true; 
         }
         else
@@ -48,6 +67,22 @@ public class FNFBotAI : MonoBehaviour
             UpdateBotUI();
             return false; 
         }
+    }
+
+    private void MainkanAnimasiBot(int lane, float durasiHold)
+    {
+        if (botAnim == null) return;
+        
+        string namaAnimasi = "Idle";
+        if (lane == 0) namaAnimasi = "Left";
+        if (lane == 1) namaAnimasi = "Down";
+        if (lane == 2) namaAnimasi = "Up";
+        if (lane == 3) namaAnimasi = "Right";
+
+        botAnim.Play(namaAnimasi, 0, 0f); 
+        
+        // Pose animasi di-hold sepanjang buntut panah tersebut!
+        botIdleTimer = durasiHold; 
     }
 
     private void UpdateBotUI()

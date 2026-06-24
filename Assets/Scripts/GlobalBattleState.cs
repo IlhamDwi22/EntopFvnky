@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class GlobalBattleState
 {
     public static bool kembaliDariBattle = false;
@@ -10,4 +12,8 @@ public static class GlobalBattleState
     public static string sceneOverworldAsal;
     public static string namaSceneCombat;
     public static OpponentData dataMusuhAktif;
+
+    // --- DATA BARU: PENYIMPAN POSISI ---
+    public static Vector3 posisiPlayerTerakhir;
+    public static bool adaPosisiTersimpan = false;
 }

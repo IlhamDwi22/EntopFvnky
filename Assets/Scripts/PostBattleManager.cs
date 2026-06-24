@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class PostBattleManager : MonoBehaviour
 {
     [Header("UI Pilihan Kalah")]
-    [Tooltip("Tarik GameObject Panel yang berisi tombol 'Ulangi' dan 'Nyerah/Batal' ke sini")]
     public GameObject panelPilihanRetry;
 
     private PlayerOverworld playerMC;
@@ -14,34 +13,42 @@ public class PostBattleManager : MonoBehaviour
         if (panelPilihanRetry != null) panelPilihanRetry.SetActive(false);
         playerMC = FindObjectOfType<PlayerOverworld>();
 
-        // Cek apakah pemain baru saja pulang dari Scene Combat
         if (GlobalBattleState.kembaliDariBattle)
         {
-            GlobalBattleState.kembaliDariBattle = false; // Matikan status agar tidak looping
+            GlobalBattleState.kembaliDariBattle = false; 
 
-            if (GlobalBattleState.playerMenang)
+            if (GlobalBattleState.adaPosisiTersimpan && playerMC != null)
             {
-                // JIKA MENANG: Panggil Dialog Menang, lalu pindah ke Scene Selanjutnya
-                if (GlobalBattleState.dialogMenang != null)
-                {
-                    DialogManager.Instance.MulaiDialog(GlobalBattleState.dialogMenang, () => { PindahKeSceneSelanjutnya(); });
-                }
-                else
-                {
-                    PindahKeSceneSelanjutnya(); // Jika tak ada dialog, langsung pindah
-                }
+                playerMC.transform.position = GlobalBattleState.posisiPlayerTerakhir;
+            }
+
+            // Beri jeda 0.1 detik agar sistem DialogManager bersiap sepenuhnya
+            Invoke("ProsesDialogPascaBattle", 0.1f);
+        }
+    }
+
+    private void ProsesDialogPascaBattle()
+    {
+        if (GlobalBattleState.playerMenang)
+        {
+            if (GlobalBattleState.dialogMenang != null)
+            {
+                DialogManager.Instance.MulaiDialog(GlobalBattleState.dialogMenang, () => { PindahKeSceneSelanjutnya(); });
             }
             else
             {
-                // JIKA KALAH: Panggil Dialog Kalah, lalu munculkan Panel Pilihan
-                if (GlobalBattleState.dialogKalah != null)
-                {
-                    DialogManager.Instance.MulaiDialog(GlobalBattleState.dialogKalah, () => { TampilkanPilihanRetry(); });
-                }
-                else
-                {
-                    TampilkanPilihanRetry();
-                }
+                PindahKeSceneSelanjutnya(); 
+            }
+        }
+        else
+        {
+            if (GlobalBattleState.dialogKalah != null)
+            {
+                DialogManager.Instance.MulaiDialog(GlobalBattleState.dialogKalah, () => { TampilkanPilihanRetry(); });
+            }
+            else
+            {
+                TampilkanPilihanRetry();
             }
         }
     }
@@ -53,6 +60,10 @@ public class PostBattleManager : MonoBehaviour
             if (SceneFader.Instance != null) SceneFader.Instance.PindahSceneDenganFade(GlobalBattleState.sceneSetelahMenang);
             else SceneManager.LoadScene(GlobalBattleState.sceneSetelahMenang);
         }
+        else
+        {
+            if (playerMC != null) playerMC.enabled = true;
+        }
     }
 
     private void TampilkanPilihanRetry()
@@ -61,7 +72,6 @@ public class PostBattleManager : MonoBehaviour
         {
             panelPilihanRetry.SetActive(true);
             
-            // Kunci total pergerakan MC saat panel terbuka
             if (playerMC != null)
             {
                 playerMC.enabled = false;
@@ -71,9 +81,12 @@ public class PostBattleManager : MonoBehaviour
                 if (anim != null) anim.SetFloat("Speed", 0f);
             }
         }
+        else
+        {
+            Debug.LogError("[PostBattleManager] GAGAL MEMUNCULKAN MENU! Kamu belum memasukkan UI Panel Kalah ke Inspector PostBattleManager!");
+        }
     }
 
-    // Fungsi ini dipanggil dari Tombol UI "Ulangi"
     public void TombolUlangiBattle()
     {
         if (panelPilihanRetry != null) panelPilihanRetry.SetActive(false);
@@ -85,10 +98,11 @@ public class PostBattleManager : MonoBehaviour
         else SceneManager.LoadScene(GlobalBattleState.namaSceneCombat);
     }
 
-    // Fungsi ini dipanggil dari Tombol UI "Batal"
     public void TombolBatal()
     {
         if (panelPilihanRetry != null) panelPilihanRetry.SetActive(false);
-        if (playerMC != null) playerMC.enabled = true; // Buka kunci gerakan MC
+        
+        // Buka kunci pergerakan MC
+        if (playerMC != null) playerMC.enabled = true; 
     }
 }

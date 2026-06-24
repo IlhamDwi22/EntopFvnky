@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class WilayahDialog : MonoBehaviour
 {
     [Header("Dialog Sebelum Battle")]
-    [Tooltip("Dialog saat pertama kali bertemu musuh")]
     public DialogData dataDialog;
 
     [Header("Pengaturan Menuju Combat")]
@@ -14,18 +13,17 @@ public class WilayahDialog : MonoBehaviour
     public OpponentData dataMusuh;
 
     [Header("Pengaturan Pasca-Battle (Setelah Combat)")]
-    [Tooltip("Dialog yang muncul otomatis jika skormu MENGALAHKAN bot")]
     public DialogData dialogMenang;
-    [Tooltip("Isi dengan nama scene tujuan jika menang (kosongkan jika tetap di Overworld)")]
     public string namaSceneSetelahMenang;
-    
-    [Tooltip("Dialog yang muncul otomatis jika skormu KALAH dari bot")]
     public DialogData dialogKalah;
 
     [Header("Pengaturan Lainnya")]
     public bool picuHanyaSekali = true;
 
     private bool sudahDipicu = false;
+    
+    // PENYELAMAT: Timer agar musuh tidak memicu dialog instan saat kita baru spawn di depannya
+    private float timerAman = 0f; 
 
     private void Start()
     {
@@ -33,10 +31,19 @@ public class WilayahDialog : MonoBehaviour
         if (col != null) col.isTrigger = true;
     }
 
+    private void Update()
+    {
+        // Menghitung waktu sejak scene dimuat (berhenti di angka 2 detik agar tidak memberatkan memori)
+        if (timerAman < 2f) timerAman += Time.deltaTime;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            // JIKA SCENE BARU SAJA DIMUAT, ABAIKAN TABRAKAN!
+            if (timerAman < 0.5f) return; 
+
             if (picuHanyaSekali && sudahDipicu) return;
             if (dataDialog == null) return;
 
@@ -54,13 +61,15 @@ public class WilayahDialog : MonoBehaviour
                             GameManager.urutanLaguSaatIni = 0; 
                         }
 
-                        // --- INJEKSI DATA PASCA-BATTLE KE MEMORI GLOBAL ---
                         GlobalBattleState.dialogMenang = dialogMenang;
                         GlobalBattleState.dialogKalah = dialogKalah;
                         GlobalBattleState.sceneSetelahMenang = namaSceneSetelahMenang;
                         GlobalBattleState.sceneOverworldAsal = SceneManager.GetActiveScene().name;
                         GlobalBattleState.namaSceneCombat = namaSceneCombat;
                         GlobalBattleState.dataMusuhAktif = dataMusuh;
+                        
+                        GlobalBattleState.posisiPlayerTerakhir = other.transform.position;
+                        GlobalBattleState.adaPosisiTersimpan = true;
 
                         if (SceneFader.Instance != null) SceneFader.Instance.PindahSceneDenganFade(namaSceneCombat);
                         else SceneManager.LoadScene(namaSceneCombat);

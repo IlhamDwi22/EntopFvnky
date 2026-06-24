@@ -14,12 +14,14 @@ public class FNFScoring : MonoBehaviour
     public Text feedbackLegacy;
     public TextMeshProUGUI feedbackTMP;
 
+    [Header("Animasi Player")]
+    public Animator playerAnim;
+
     private float hitWindow = 0.15f; 
     private float sickWindow = 0.05f;
     private float goodWindow = 0.1f;
     private int missPenalty = 50;
 
-    // DIUBAH MENJADI PUBLIC AGAR BISA DIBACA SAAT LAGU SELESAI
     public int playerScore = 0; 
     private int playerCombo = 0;
     
@@ -31,6 +33,9 @@ public class FNFScoring : MonoBehaviour
     private float animDuration = 0.15f;
     private Color[] currentTargetColors = new Color[4];
     private Vector3[] currentTargetScales = new Vector3[4];
+    
+    // Variabel untuk mencegah script memutar animasi berulang kali setiap frame
+    private string currentAnimState = "";
 
     private void Start()
     {
@@ -61,17 +66,62 @@ public class FNFScoring : MonoBehaviour
 
     private void Update()
     {
+        // 1. DETEKSI PUKULAN AWAL (GetKeyDown)
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) TryHitNote(0);
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) TryHitNote(1);
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) TryHitNote(2);
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) TryHitNote(3);
 
+        // 2. DETEKSI PELEPASAN TOMBOL (GetKeyUp)
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) TryReleaseNote(0);
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) TryReleaseNote(1);
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)) TryReleaseNote(2);
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) TryReleaseNote(3);
 
         UpdateReceptorAnimations();
+
+        // 3. SISTEM ANIMASI TAHAN TOMBOL (GetKey)
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) MainkanAnimasiPlayer("Left");
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) MainkanAnimasiPlayer("Down");
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) MainkanAnimasiPlayer("Up");
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) MainkanAnimasiPlayer("Right");
+        else MainkanAnimasiPlayer("Idle"); // Jika tidak ada tombol yang ditekan, paksa kembali ke Idle
+
+        // 4. PENYELESAIAN HOLD NOTE UNTUK SKOR
+        for (int i = 0; i < 4; i++)
+        {
+            if (currentlyHeldNotes[i] != null)
+            {
+                FNFNoteController heldNote = currentlyHeldNotes[i];
+                float waktuSelesai = heldNote.GetDetails().hitTime + heldNote.GetDetails().duration;
+
+                if (FNFConductor.Instance.currentSongTime >= waktuSelesai - 0.05f)
+                {
+                    playerScore += 100;
+                    playerCombo++;
+                    ShowFeedback("NICE HOLD!");
+                    UpdatePlayerUI();
+
+                    heldNote.DestroyNoteAndRemove();
+                    currentlyHeldNotes[i] = null;
+                }
+                else
+                {
+                    playerScore += 1;
+                    UpdatePlayerUI();
+                }
+            }
+        }
+    }
+
+    private void MainkanAnimasiPlayer(string namaAnimasi)
+    {
+        // Hanya memanggil perintah Play jika animasinya benar-benar berbeda dari frame sebelumnya
+        if (playerAnim != null && currentAnimState != namaAnimasi)
+        {
+            playerAnim.Play(namaAnimasi);
+            currentAnimState = namaAnimasi; // Simpan memori gaya yang sedang dilakukan
+        }
     }
 
     private void TryHitNote(int inputLane)
@@ -105,7 +155,7 @@ public class FNFScoring : MonoBehaviour
 
             UpdatePlayerUI();
             
-            if (closestNote.GetDetails().duration > 0)
+            if (closestNote.GetDetails().duration > 0.05f)
             {
                 closestNote.isBeingHeld = true;
                 currentlyHeldNotes[inputLane] = closestNote;
@@ -117,9 +167,7 @@ public class FNFScoring : MonoBehaviour
         }
         else
         {
-            playerCombo = 0;
-            UpdatePlayerUI();
-            ShowFeedback("MISS!");
+            RegisterPlayerMiss();
             TriggerReceptorEffect(inputLane, "MISS");
         }
     }
@@ -129,13 +177,11 @@ public class FNFScoring : MonoBehaviour
         if (currentlyHeldNotes[lane] != null)
         {
             FNFNoteController heldNote = currentlyHeldNotes[lane];
-            float sisaWaktu = (heldNote.GetDetails().hitTime + heldNote.GetDetails().duration) - FNFConductor.Instance.currentSongTime;
+            float sisaWaktuBuntut = (heldNote.GetDetails().hitTime + heldNote.GetDetails().duration) - FNFConductor.Instance.currentSongTime;
             
-            if (sisaWaktu > 0.1f) 
+            if (sisaWaktuBuntut > 0.1f) 
             {
-                playerCombo = 0; 
-                ShowFeedback("MISS!");
-                UpdatePlayerUI();
+                RegisterPlayerMiss();
             }
             
             heldNote.DestroyNoteAndRemove();

@@ -573,6 +573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 518307222}
   - component: {fileID: 518307221}
+  - component: {fileID: 518307223}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -629,7 +630,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6523388641176765678, guid: 60ece351aef40854795d4b9d8643731a, type: 3}
+  m_Sprite: {fileID: -5066904922739476154, guid: 99524341733990243aea77d69ced7004, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -647,13 +648,35 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518307220}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 54.23, y: -1.96, z: 0}
   m_LocalScale: {x: 0.28, y: 0.28, z: 0.28}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!95 &518307223
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518307220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2627406637e8d0544b0b799d0f1f359e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &550250790
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,9 +7212,9 @@ MonoBehaviour:
   pindahSceneSetelahDialog: 1
   namaSceneCombat: Combat
   dataMusuh: {fileID: 11400000, guid: 988c89a988d6eee4a8d99268ab1c623d, type: 2}
-  dialogMenang: {fileID: 11400000, guid: 7580a7fb1ca9c224e846a43ddb4e7651, type: 2}
-  namaSceneSetelahMenang: Combat
-  dialogKalah: {fileID: 11400000, guid: 813d2a6673bf8c740887ce62eaf2ca73, type: 2}
+  dialogMenang: {fileID: 11400000, guid: eb93c7a93e575924d9a25baf66d195a1, type: 2}
+  namaSceneSetelahMenang: New Scene
+  dialogKalah: {fileID: 11400000, guid: 0f1feacaf61b847468aa65e3ecb8ac8b, type: 2}
   picuHanyaSekali: 1
 --- !u!61 &1548504468
 BoxCollider2D:
@@ -9483,7 +9506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39d500dede9bc24a8e79e29fc4250f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerOverworld
-  moveSpeed: 8
+  moveSpeed: 12
   jumpForce: 16
   groundCheck: {fileID: 0}
   groundCheckRadius: 0.2

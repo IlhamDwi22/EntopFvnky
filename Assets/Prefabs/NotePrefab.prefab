@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: ee68272e642b0d34aa5474b89effa334, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
@@ -199,4 +199,5 @@ MonoBehaviour:
   holdTail: {fileID: 4103946226891979196}
   panjangBuntutMultiplier: 2
   tebalBuntut: 2
+  yOffsetBuntut: 1.2
   isBeingHeld: 0

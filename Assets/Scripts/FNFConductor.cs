@@ -16,8 +16,11 @@ public class FNFConductor : MonoBehaviour
     [Header("Visualisasi Gameplay")]
     public SpriteRenderer visualKarakterBot;
     
-    [Tooltip("Masukkan 4 gambar panah secara berurutan: 0=Kiri, 1=Bawah, 2=Atas, 3=Kanan")]
+    [Tooltip("Masukkan 4 gambar KEPALA panah: 0=Kiri, 1=Bawah, 2=Atas, 3=Kanan")]
     public Sprite[] noteSprites = new Sprite[4];
+
+    [Tooltip("Masukkan 4 gambar EKOR panah (Hold): 0=Kiri, 1=Bawah, 2=Atas, 3=Kanan")]
+    public Sprite[] holdSprites = new Sprite[4]; // <-- WADAH BARU UNTUK GAMBAR EKOR
 
     [Header("Pengaturan Jarak Spawn")]
     public float spawnAheadTime = 3f;
@@ -42,7 +45,6 @@ public class FNFConductor : MonoBehaviour
 
     private void Start()
     {
-        // PENGAMAN UTAMA: Pastikan waktu Unity berjalan 100% normal (tidak freeze dari overworld)
         Time.timeScale = 1f;
 
         if (GameManager.musuhPilihanSaatIni == null || GameManager.musuhPilihanSaatIni.daftarLagu.Length == 0)
@@ -54,9 +56,18 @@ public class FNFConductor : MonoBehaviour
         OpponentData dataMusuh = GameManager.musuhPilihanSaatIni;
         SongData dataLagu = dataMusuh.daftarLagu[GameManager.urutanLaguSaatIni];
 
-        if (visualKarakterBot != null && dataMusuh.visualMusuh != null)
+        if (visualKarakterBot != null)
         {
-            visualKarakterBot.sprite = dataMusuh.visualMusuh;
+            if (dataMusuh.visualMusuh != null)
+            {
+                visualKarakterBot.sprite = dataMusuh.visualMusuh;
+            }
+            
+            Animator botAnimController = visualKarakterBot.GetComponent<Animator>();
+            if (botAnimController != null && dataMusuh.animasiMusuh != null)
+            {
+                botAnimController.runtimeAnimatorController = dataMusuh.animasiMusuh;
+            }
         }
 
         int kesulitan = dataMusuh.tingkatKesulitan;
@@ -83,10 +94,8 @@ public class FNFConductor : MonoBehaviour
 
         if (musicSource != null)
         {
-            // --- REFORMASI LOGIKA TRACKING AUDIO (ANTI-STUCK) ---
             if (!hasStartedPlaying)
             {
-                // Jalankan hitung mundur intro (Aman sekalipun songDelay bernilai 0)
                 introTimer += Time.deltaTime;
                 currentSongTime = introTimer;
 
@@ -96,25 +105,22 @@ public class FNFConductor : MonoBehaviour
                     {
                         musicSource.Play();
                     }
-                    hasStartedPlaying = true; // Kunci status agar masuk ke mode tracking musik
+                    hasStartedPlaying = true; 
                 }
             }
             else
             {
-                // Jika musik sedang menyala berjalan, ikuti posisi waktu asli dari file audio
                 if (musicSource.isPlaying)
                 {
                     currentSongTime = musicSource.time + audioOffsetAdjustment;
                 }
                 else
                 {
-                    // Jika musik terdeteksi mati setelah sempat berputar, artinya lagu selesai secara natural
                     EndBattle();
                 }
             }
         }
 
-        // Spawn panah berdasarkan pergerakan currentSongTime yang sekarang dijamin terus bertambah
         while (nextNoteIndex < sequencedNotes.Count && sequencedNotes[nextNoteIndex].hitTime - currentSongTime <= spawnAheadTime)
         {
             SpawnFNFNote(sequencedNotes[nextNoteIndex]);
@@ -127,8 +133,6 @@ public class FNFConductor : MonoBehaviour
         battleEnded = true;
         isSongPlaying = false;
         
-        Debug.Log("[FNFConductor] Lagu Selesai! Memproses skor dan kembali ke Overworld...");
-
         GlobalBattleState.kembaliDariBattle = true;
 
         int skorPlayer = scoringSystem != null ? scoringSystem.playerScore : 0;
@@ -263,6 +267,7 @@ public class FNFConductor : MonoBehaviour
         Vector3 spawnPosition = receptor.position + new Vector3(0, spawnAheadTime * speed, 0);
         GameObject spawnedObj = Instantiate(notePrefab, spawnPosition, Quaternion.identity);
         
+        // Atur Gambar KEPALA Panah
         SpriteRenderer sr = spawnedObj.GetComponent<SpriteRenderer>();
         if (sr != null && noteSprites.Length == 4)
         {
@@ -272,6 +277,16 @@ public class FNFConductor : MonoBehaviour
         FNFNoteController controller = spawnedObj.GetComponent<FNFNoteController>();
         if (controller != null)
         {
+            // --- LOGIKA BARU: Atur Gambar EKOR Panah (Jika Ada) ---
+            if (controller.holdTail != null && holdSprites.Length == 4)
+            {
+                SpriteRenderer tailSR = controller.holdTail.GetComponent<SpriteRenderer>();
+                if (tailSR != null && holdSprites[data.lane] != null)
+                {
+                    tailSR.sprite = holdSprites[data.lane];
+                }
+            }
+
             FNFNoteData runtimeData = new FNFNoteData() { hitTime = data.hitTime, lane = data.lane, duration = data.duration, isBot = assignmentToBot };
             controller.Setup(runtimeData, receptor, speed);
         }
