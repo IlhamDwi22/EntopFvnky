@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "EntopFvnky.slnx",
+    "dotnet.defaultSolution": "EntopFvnky-2026-06-23-10-30-12.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
