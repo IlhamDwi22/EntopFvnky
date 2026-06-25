@@ -34,13 +34,19 @@ public class FNFScoring : MonoBehaviour
     private Color[] currentTargetColors = new Color[4];
     private Vector3[] currentTargetScales = new Vector3[4];
     
-    // Variabel untuk mencegah script memutar animasi berulang kali setiap frame
     private string currentAnimState = "";
 
     private void Start()
     {
         UpdatePlayerUI();
         ClearFeedback();
+        
+        // Memastikan KeyMappingManager ada sebelum bertarung
+        if (KeyMappingManager.Instance == null)
+        {
+            GameObject managerObj = new GameObject("KeyMappingManager");
+            managerObj.AddComponent<KeyMappingManager>();
+        }
         
         for (int i = 0; i < 4; i++)
         {
@@ -66,26 +72,28 @@ public class FNFScoring : MonoBehaviour
 
     private void Update()
     {
+        if (KeyMappingManager.Instance == null) return;
+
         // 1. DETEKSI PUKULAN AWAL (GetKeyDown)
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) TryHitNote(0);
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) TryHitNote(1);
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) TryHitNote(2);
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) TryHitNote(3);
+        if (Input.GetKeyDown(KeyMappingManager.Instance.keyLeft) || Input.GetKeyDown(KeyCode.LeftArrow)) TryHitNote(0);
+        if (Input.GetKeyDown(KeyMappingManager.Instance.keyDown) || Input.GetKeyDown(KeyCode.DownArrow)) TryHitNote(1);
+        if (Input.GetKeyDown(KeyMappingManager.Instance.keyUp) || Input.GetKeyDown(KeyCode.UpArrow)) TryHitNote(2);
+        if (Input.GetKeyDown(KeyMappingManager.Instance.keyRight) || Input.GetKeyDown(KeyCode.RightArrow)) TryHitNote(3);
 
         // 2. DETEKSI PELEPASAN TOMBOL (GetKeyUp)
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow)) TryReleaseNote(0);
-        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) TryReleaseNote(1);
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow)) TryReleaseNote(2);
-        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) TryReleaseNote(3);
+        if (Input.GetKeyUp(KeyMappingManager.Instance.keyLeft) || Input.GetKeyUp(KeyCode.LeftArrow)) TryReleaseNote(0);
+        if (Input.GetKeyUp(KeyMappingManager.Instance.keyDown) || Input.GetKeyUp(KeyCode.DownArrow)) TryReleaseNote(1);
+        if (Input.GetKeyUp(KeyMappingManager.Instance.keyUp) || Input.GetKeyUp(KeyCode.UpArrow)) TryReleaseNote(2);
+        if (Input.GetKeyUp(KeyMappingManager.Instance.keyRight) || Input.GetKeyUp(KeyCode.RightArrow)) TryReleaseNote(3);
 
         UpdateReceptorAnimations();
 
         // 3. SISTEM ANIMASI TAHAN TOMBOL (GetKey)
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) MainkanAnimasiPlayer("Left");
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) MainkanAnimasiPlayer("Down");
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) MainkanAnimasiPlayer("Up");
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) MainkanAnimasiPlayer("Right");
-        else MainkanAnimasiPlayer("Idle"); // Jika tidak ada tombol yang ditekan, paksa kembali ke Idle
+        if (Input.GetKey(KeyMappingManager.Instance.keyLeft) || Input.GetKey(KeyCode.LeftArrow)) MainkanAnimasiPlayer("Left");
+        else if (Input.GetKey(KeyMappingManager.Instance.keyDown) || Input.GetKey(KeyCode.DownArrow)) MainkanAnimasiPlayer("Down");
+        else if (Input.GetKey(KeyMappingManager.Instance.keyUp) || Input.GetKey(KeyCode.UpArrow)) MainkanAnimasiPlayer("Up");
+        else if (Input.GetKey(KeyMappingManager.Instance.keyRight) || Input.GetKey(KeyCode.RightArrow)) MainkanAnimasiPlayer("Right");
+        else MainkanAnimasiPlayer("Idle"); 
 
         // 4. PENYELESAIAN HOLD NOTE UNTUK SKOR
         for (int i = 0; i < 4; i++)
@@ -116,11 +124,10 @@ public class FNFScoring : MonoBehaviour
 
     private void MainkanAnimasiPlayer(string namaAnimasi)
     {
-        // Hanya memanggil perintah Play jika animasinya benar-benar berbeda dari frame sebelumnya
         if (playerAnim != null && currentAnimState != namaAnimasi)
         {
             playerAnim.Play(namaAnimasi);
-            currentAnimState = namaAnimasi; // Simpan memori gaya yang sedang dilakukan
+            currentAnimState = namaAnimasi; 
         }
     }
 
@@ -241,10 +248,12 @@ public class FNFScoring : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             bool isKeyPressed = false;
-            if (i == 0 && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))) isKeyPressed = true;
-            if (i == 1 && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))) isKeyPressed = true;
-            if (i == 2 && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))) isKeyPressed = true;
-            if (i == 3 && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))) isKeyPressed = true;
+            
+            // Animasi receptor juga harus mengikuti tombol yang disetting
+            if (i == 0 && (Input.GetKey(KeyMappingManager.Instance.keyLeft) || Input.GetKey(KeyCode.LeftArrow))) isKeyPressed = true;
+            if (i == 1 && (Input.GetKey(KeyMappingManager.Instance.keyDown) || Input.GetKey(KeyCode.DownArrow))) isKeyPressed = true;
+            if (i == 2 && (Input.GetKey(KeyMappingManager.Instance.keyUp) || Input.GetKey(KeyCode.UpArrow))) isKeyPressed = true;
+            if (i == 3 && (Input.GetKey(KeyMappingManager.Instance.keyRight) || Input.GetKey(KeyCode.RightArrow))) isKeyPressed = true;
 
             Transform receptor = FNFConductor.Instance.playerReceptors[i];
             if (receptor == null) continue;
