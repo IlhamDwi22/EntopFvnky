@@ -87,7 +87,7 @@ public class FNFBotAI : MonoBehaviour
 
     private void UpdateBotUI()
     {
-        string txt = $"Bot: {botScore} | Combo: {botCombo}";
+        string txt = $" {botScore} ";
         if (botScoreLegacy != null) botScoreLegacy.text = txt;
         if (botScoreTMP != null) botScoreTMP.text = txt;
     }

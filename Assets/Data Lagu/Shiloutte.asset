@@ -16,6 +16,6 @@ MonoBehaviour:
   namaArtis: 
   fileAudio: {fileID: 8300000, guid: e4353cb2761722644a8fdf8fbf41f056, type: 3}
   fileChart: {fileID: 4900000, guid: 07e2a53fcbed3fc40bd2d9cf38daf635, type: 3}
-  delayMulai: 0
-  kecepatanScroll: 10
+  delayMulai: 2
+  kecepatanScroll: 15
   penyesuaianOffset: 0

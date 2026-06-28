@@ -6,27 +6,30 @@ public class PlayerOverworld : MonoBehaviour
 {
     [Header("Pengaturan Pergerakan")]
     public float moveSpeed = 8f;
-    public float jumpForce = 16f;
+    public float jumpForce = 15f;
 
     [Header("Deteksi Tanah (Ground Check)")]
-    [Tooltip("Tarik objek kosong (GroundCheck) yang ada di kaki karakter ke sini")]
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
-    [Tooltip("Pilih layer yang dianggap sebagai tanah/pijakan")]
     public LayerMask groundLayer;
 
     [Header("Komponen Animasi")]
-    [Tooltip("Tarik komponen Animator dari karakter ke kolom ini di Inspector")]
     public Animator anim; 
 
     private Rigidbody2D rb;
+    private CapsuleCollider2D myCollider; // Memori untuk mengenali badan sendiri
     private float horizontalInput;
     private bool isFacingRight = true;
-    private bool isGrounded;
+    
+    [Header("Status (Hanya untuk dilihat)")]
+    public bool isGrounded; 
+    
+    private float jumpCooldownTimer = 0f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<CapsuleCollider2D>();
         
         if (anim == null)
         {
@@ -38,56 +41,60 @@ public class PlayerOverworld : MonoBehaviour
 
     private void Update()
     {
-        // --- LOGIKA BARU: FREEZE SAAT DIALOG ---
         if (DialogManager.Instance != null && DialogManager.Instance.sedangBicara)
         {
-            horizontalInput = 0f; // Reset input jalan menjadi nol
-            
-            // Paksa animator kembali ke animasi Idle (Speed = 0)
-            // Arah hadap (FacingDirection) sengaja tidak diubah agar karakter tetap menghadap ke posisi terakhirnya
-            if (anim != null)
-            {
-                anim.SetFloat("Speed", 0f);
-            }
-            
-            // Hentikan momentum kecepatan fisik secara instan
+            horizontalInput = 0f; 
+            if (anim != null) anim.SetFloat("Speed", 0f);
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            
-            return; // Keluar dari fungsi Update agar semua input tombol di bawah diabaikan
+            return; 
         }
 
-        // 1. Ambil Input Kiri/Kanan (A/D atau Panah Kiri/Kanan) jika normal
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        // 2. Cek apakah karakter sedang menginjak tanah
+        // Kurangi waktu jeda
+        if (jumpCooldownTimer > 0)
+        {
+            jumpCooldownTimer -= Time.deltaTime;
+        }
+
+        // --- LOGIKA GROUND CHECK ANTI-BOCOR ---
+        isGrounded = false;
         if (groundCheck != null)
         {
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            // Ambil semua objek yang bersentuhan dengan lingkaran sensor
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer);
+            foreach (Collider2D col in colliders)
+            {
+                // SYARAT MUTLAK: Objek yang diinjak BUKAN badan player itu sendiri DAN bukan Trigger (seperti area dialog)
+                if (col != myCollider && !col.isTrigger)
+                {
+                    isGrounded = true;
+                    break;
+                }
+            }
         }
 
-        // 3. Deteksi Input Lompat
-        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
+        // --- LOGIKA LOMPAT ANTI-TERBANG ---
+        bool jumpInput = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+
+        if (jumpInput && isGrounded && jumpCooldownTimer <= 0f && rb.linearVelocity.y <= 0.1f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            jumpCooldownTimer = 0.25f; 
         }
 
-        // 4. Balikkan hadapan fisik karakter (Kiri/Kanan)
         FlipKarakter();
-
-        // 5. UPDATE PARAMETER ANIMATOR (Idle & Walking)
         UpdateAnimator();
     }
 
     private void FixedUpdate()
     {
-        // Kunci juga kecepatan fisik di FixedUpdate agar tidak ada celah pergerakan gaib saat dialog
         if (DialogManager.Instance != null && DialogManager.Instance.sedangBicara)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             return;
         }
 
-        // Terapkan kecepatan pada Rigidbody secara normal jika tidak sedang dialog
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
     }
 
@@ -118,7 +125,8 @@ public class PlayerOverworld : MonoBehaviour
     {
         if (groundCheck != null)
         {
-            Gizmos.color = Color.red;
+            // Indikator Warna: Hijau = Menginjak lantai dengan benar, Merah = Melayang di udara
+            Gizmos.color = isGrounded ? Color.green : Color.red;
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
         }
     }

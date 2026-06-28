@@ -6,9 +6,14 @@ using System.Collections;
 
 public class FNFScoring : MonoBehaviour
 {
-    [Header("UI Canvas - Player")]
+    [Header("UI Canvas - Player Score")]
     public Text playerScoreLegacy;
     public TextMeshProUGUI playerScoreTMP;
+
+    [Header("UI Canvas - Player Combo (BARU)")]
+    [Tooltip("Tarik teks khusus Combo ke sini agar posisinya bisa dipisah dari Skor")]
+    public Text playerComboLegacy;
+    public TextMeshProUGUI playerComboTMP;
     
     [Header("UI Canvas - Player Feedback")]
     public Text feedbackLegacy;
@@ -41,7 +46,6 @@ public class FNFScoring : MonoBehaviour
         UpdatePlayerUI();
         ClearFeedback();
         
-        // Memastikan KeyMappingManager ada sebelum bertarung
         if (KeyMappingManager.Instance == null)
         {
             GameObject managerObj = new GameObject("KeyMappingManager");
@@ -74,13 +78,13 @@ public class FNFScoring : MonoBehaviour
     {
         if (KeyMappingManager.Instance == null) return;
 
-        // 1. DETEKSI PUKULAN AWAL (GetKeyDown)
+        // 1. DETEKSI PUKULAN AWAL
         if (Input.GetKeyDown(KeyMappingManager.Instance.keyLeft) || Input.GetKeyDown(KeyCode.LeftArrow)) TryHitNote(0);
         if (Input.GetKeyDown(KeyMappingManager.Instance.keyDown) || Input.GetKeyDown(KeyCode.DownArrow)) TryHitNote(1);
         if (Input.GetKeyDown(KeyMappingManager.Instance.keyUp) || Input.GetKeyDown(KeyCode.UpArrow)) TryHitNote(2);
         if (Input.GetKeyDown(KeyMappingManager.Instance.keyRight) || Input.GetKeyDown(KeyCode.RightArrow)) TryHitNote(3);
 
-        // 2. DETEKSI PELEPASAN TOMBOL (GetKeyUp)
+        // 2. DETEKSI PELEPASAN TOMBOL
         if (Input.GetKeyUp(KeyMappingManager.Instance.keyLeft) || Input.GetKeyUp(KeyCode.LeftArrow)) TryReleaseNote(0);
         if (Input.GetKeyUp(KeyMappingManager.Instance.keyDown) || Input.GetKeyUp(KeyCode.DownArrow)) TryReleaseNote(1);
         if (Input.GetKeyUp(KeyMappingManager.Instance.keyUp) || Input.GetKeyUp(KeyCode.UpArrow)) TryReleaseNote(2);
@@ -88,7 +92,7 @@ public class FNFScoring : MonoBehaviour
 
         UpdateReceptorAnimations();
 
-        // 3. SISTEM ANIMASI TAHAN TOMBOL (GetKey)
+        // 3. SISTEM ANIMASI TAHAN TOMBOL
         if (Input.GetKey(KeyMappingManager.Instance.keyLeft) || Input.GetKey(KeyCode.LeftArrow)) MainkanAnimasiPlayer("Left");
         else if (Input.GetKey(KeyMappingManager.Instance.keyDown) || Input.GetKey(KeyCode.DownArrow)) MainkanAnimasiPlayer("Down");
         else if (Input.GetKey(KeyMappingManager.Instance.keyUp) || Input.GetKey(KeyCode.UpArrow)) MainkanAnimasiPlayer("Up");
@@ -249,7 +253,6 @@ public class FNFScoring : MonoBehaviour
         {
             bool isKeyPressed = false;
             
-            // Animasi receptor juga harus mengikuti tombol yang disetting
             if (i == 0 && (Input.GetKey(KeyMappingManager.Instance.keyLeft) || Input.GetKey(KeyCode.LeftArrow))) isKeyPressed = true;
             if (i == 1 && (Input.GetKey(KeyMappingManager.Instance.keyDown) || Input.GetKey(KeyCode.DownArrow))) isKeyPressed = true;
             if (i == 2 && (Input.GetKey(KeyMappingManager.Instance.keyUp) || Input.GetKey(KeyCode.UpArrow))) isKeyPressed = true;
@@ -286,11 +289,18 @@ public class FNFScoring : MonoBehaviour
         }
     }
 
+    // --- REFORMASI LOGIKA UPDATE UI (DIPISAH TOTAL) ---
     private void UpdatePlayerUI()
     {
-        string txt = $"Player: {playerScore} | Combo: {playerCombo}";
-        if (playerScoreLegacy != null) playerScoreLegacy.text = txt;
-        if (playerScoreTMP != null) playerScoreTMP.text = txt;
+        // 1. Mengurus Teks Skor Player
+        string formatSkor = $" {playerScore}";
+        if (playerScoreLegacy != null) playerScoreLegacy.text = formatSkor;
+        if (playerScoreTMP != null) playerScoreTMP.text = formatSkor;
+
+        // 2. Mengurus Teks Combo Player (Sekarang punya jalurnya sendiri)
+        string formatCombo = playerCombo > 0 ? $"Combo x{playerCombo}" : ""; // Hilangkan tulisan jika combo 0
+        if (playerComboLegacy != null) playerComboLegacy.text = formatCombo;
+        if (playerComboTMP != null) playerComboTMP.text = formatCombo;
     }
 
     private void ShowFeedback(string message)

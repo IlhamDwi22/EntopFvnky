@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SongData
   judulLagu: 
   namaArtis: 
-  fileAudio: {fileID: 8300000, guid: adca8296b8602964288357d7eb8ac72a, type: 3}
-  fileChart: {fileID: 4900000, guid: 42c4e5ec6654e2f438a81a7e9477d3e9, type: 3}
+  fileAudio: {fileID: 8300000, guid: 63386395328f14646b7ea3059f1e3ab4, type: 3}
+  fileChart: {fileID: 4900000, guid: 15e608b490a4df74bb67d5173c846dcc, type: 3}
   delayMulai: 1
-  kecepatanScroll: 10
+  kecepatanScroll: 8
   penyesuaianOffset: 0
