@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829afb2c03498d94999e8f3fac0af189, type: 3}
+  m_Name: scene 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogData
+  daftarPercakapan:
+  - namaPembicara: Velvet
+    kalimat: 'Menarik..
+
+      Ternyata kau memang pemilik suara itu.'
+  - namaPembicara: Zero
+    kalimat: Katakan. Kenapa kau mencurinya?
+  - namaPembicara: Velvet
+    kalimat: (tersenyum pahit) Karena dunia hanya perlu mengingat siapa yang berada
+      di atas panggung.
+  - namaPembicara: Velvet
+    kalimat: 'Tapi hari ini..
+
+      Aku salah.'
+  - namaPembicara: Zero
+    kalimat: 'Aku tidak datang untuk balas dendam.
+
+      Aku hanya ingin mengambil
+      kembali apa yang menjadi milikku.'

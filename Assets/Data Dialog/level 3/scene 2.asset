@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829afb2c03498d94999e8f3fac0af189, type: 3}
+  m_Name: scene 2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogData
+  daftarPercakapan:
+  - namaPembicara: Velvet
+    kalimat: Ryker ternyata gagal menghentikanmu.
+  - namaPembicara: Zero
+    kalimat: Kau yang mengatur semua ini?
+  - namaPembicara: Velvet
+    kalimat: 'Aku hanya memastikan...
+
+      Orang yang tepat mendapat sorotan. '
+  - namaPembicara: Zero
+    kalimat: Laguku bukan milik kalian!
+  - namaPembicara: Velvet
+    kalimat: 'Mungkin.
+
+      Tapi sekarang..
+
+      Seluruh kota percaya sebaliknya.'
+  - namaPembicara: Velvet
+    kalimat: 'Kalau ingin mengubah itu..
+
+      Kalahkan aku.'
