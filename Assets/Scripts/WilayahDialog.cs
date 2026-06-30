@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(BoxCollider2D))]
 public class WilayahDialog : MonoBehaviour
 {
-    [Header("Dialog Sebelum Battle")]
+    [Header("Dialog Sebelum Battle (Jika Barang Sudah Ada / Tanpa Syarat)")]
     public DialogData dataDialog;
 
     [Header("Pengaturan Menuju Combat")]
@@ -17,12 +17,18 @@ public class WilayahDialog : MonoBehaviour
     public string namaSceneSetelahMenang;
     public DialogData dialogKalah;
 
+    [Header("SISTEM PENGUNCIAN BARANG QUEST (BARU)")]
+    [Tooltip("Centang ini jika musuh ini mewajibkan player mencari barang terlebih dahulu")]
+    public bool butuhBarangQuest = false;
+    [Tooltip("Isi dengan ID Teks barang yang wajib dibawa player (Misal: KunciLevel2)")]
+    public string IDBarangYangDibutuhkan = "KunciLevel2";
+    [Tooltip("Dialog penolakan yang muncul jika player nekat menabrak musuh tapi belum bawa barangnya")]
+    public DialogData dialogJikaBarangBelumAda;
+
     [Header("Pengaturan Lainnya")]
     public bool picuHanyaSekali = true;
 
     private bool sudahDipicu = false;
-    
-    // PENYELAMAT: Timer agar musuh tidak memicu dialog instan saat kita baru spawn di depannya
     private float timerAman = 0f; 
 
     private void Start()
@@ -33,7 +39,6 @@ public class WilayahDialog : MonoBehaviour
 
     private void Update()
     {
-        // Menghitung waktu sejak scene dimuat (berhenti di angka 2 detik agar tidak memberatkan memori)
         if (timerAman < 2f) timerAman += Time.deltaTime;
     }
 
@@ -41,12 +46,36 @@ public class WilayahDialog : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // JIKA SCENE BARU SAJA DIMUAT, ABAIKAN TABRAKAN!
             if (timerAman < 0.5f) return; 
-
             if (picuHanyaSekali && sudahDipicu) return;
-            if (dataDialog == null) return;
 
+            // --- SISTEM PEMERIKSAAN KANTONG BARANG ---
+            if (butuhBarangQuest)
+            {
+                // Minta bantuan GlobalBattleState untuk mengecek isi list
+                bool memilikiBarang = GlobalBattleState.CekBarang(IDBarangYangDibutuhkan);
+
+                if (!memilikiBarang)
+                {
+                    // Jika player tidak punya barangnya, putar dialog penolakan
+                    if (dialogJikaBarangBelumAda != null && DialogManager.Instance != null)
+                    {
+                        DialogManager.Instance.MulaiDialog(dialogJikaBarangBelumAda, () => 
+                        {
+                            // Kosong. Player dibebaskan bergerak kembali untuk mencari barang di map
+                        });
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[WilayahDialog] Player dihadang quest, tapi file 'dialogJikaBarangBelumAda' belum diisi!");
+                    }
+                    
+                    return; // BLOKIR JALUR: Menghentikan paksa kodingan di sini agar tidak masuk ke area combat!
+                }
+            }
+
+            // --- JALUR NORMAL (JIKA SYARAT QUEST SUDAH TERPENOJI ATAU TIDAK DIKUNCI) ---
+            if (dataDialog == null) return;
             sudahDipicu = true;
 
             if (DialogManager.Instance != null)

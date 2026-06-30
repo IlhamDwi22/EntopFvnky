@@ -6039,6 +6039,9 @@ MonoBehaviour:
   dialogMenang: {fileID: 0}
   namaSceneSetelahMenang: 
   dialogKalah: {fileID: 0}
+  butuhBarangQuest: 0
+  IDBarangYangDibutuhkan: KunciLevel2
+  dialogJikaBarangBelumAda: {fileID: 0}
   picuHanyaSekali: 1
 --- !u!61 &677185287
 BoxCollider2D:
@@ -7064,6 +7067,9 @@ MonoBehaviour:
   dialogMenang: {fileID: 0}
   namaSceneSetelahMenang: 
   dialogKalah: {fileID: 0}
+  butuhBarangQuest: 0
+  IDBarangYangDibutuhkan: KunciLevel2
+  dialogJikaBarangBelumAda: {fileID: 0}
   picuHanyaSekali: 1
 --- !u!61 &1157739360
 BoxCollider2D:
@@ -7418,11 +7424,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WilayahDialog
   dataDialog: {fileID: 11400000, guid: 813d2a6673bf8c740887ce62eaf2ca73, type: 2}
   pindahSceneSetelahDialog: 1
-  namaSceneCombat: Combat
+  namaSceneCombat: Combat_1
   dataMusuh: {fileID: 11400000, guid: 988c89a988d6eee4a8d99268ab1c623d, type: 2}
   dialogMenang: {fileID: 11400000, guid: eb93c7a93e575924d9a25baf66d195a1, type: 2}
   namaSceneSetelahMenang: Level2
   dialogKalah: {fileID: 11400000, guid: 0f1feacaf61b847468aa65e3ecb8ac8b, type: 2}
+  butuhBarangQuest: 0
+  IDBarangYangDibutuhkan: KunciLevel2
+  dialogJikaBarangBelumAda: {fileID: 0}
   picuHanyaSekali: 1
 --- !u!61 &1548504468
 BoxCollider2D:
@@ -9722,7 +9731,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  anim: {fileID: 1711972079}
+  anim: {fileID: 0}
   isGrounded: 0
 --- !u!95 &1711972079
 Animator:
@@ -9734,7 +9743,7 @@ Animator:
   m_GameObject: {fileID: 1711972073}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 97195931eb8959d4ea7aa4c4ef328079, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4b66e2dd18d7dcf48ae75929e034382a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
