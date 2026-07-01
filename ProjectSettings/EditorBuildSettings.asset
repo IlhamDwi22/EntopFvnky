@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gesek Kartu.unity
     guid: 06c6b8759a8e42846ba9cef938233f94
+  - enabled: 1
+    path: Assets/Scenes/Combat_2.unity
+    guid: 0f524827944a1ec49a31a577f96e2cf3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
