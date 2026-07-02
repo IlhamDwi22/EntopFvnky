@@ -18,8 +18,10 @@ public class PintuTransisi : MonoBehaviour
     public Transform titikMendarat;
 
     [Header("Sistem Interaksi (Manual)")]
-    [Tooltip("Radius seberapa dekat player harus berdiri untuk memunculkan tanda seru")]
-    public float radiusInteraksi = 1.5f;
+    [Tooltip("Jarak maksimal player untuk berinteraksi (menekan tombol E)")]
+    public float radiusInteraksi = 1.2f;
+    [Tooltip("Jarak maksimal player untuk memunculkan ikon penunjuk / panah")]
+    public float radiusDeteksi = 3f;
     [Tooltip("Masukkan objek gambar tanda seru/panah ke sini")]
     public GameObject ikonPanah;
 
@@ -78,38 +80,45 @@ public class PintuTransisi : MonoBehaviour
     // --- SISTEM SENSOR RADIUS ---
     private void CekRadiusPlayer()
     {
-        bool terdeteksi = false;
+        bool dalamRadiusInteraksi = false;
+        bool dalamRadiusDeteksi = false;
         
-        // Cek semua objek di dalam radius
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusInteraksi);
+        // Cek semua objek di dalam radius terbesar
+        float radiusTerbesar = Mathf.Max(radiusInteraksi, radiusDeteksi);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusTerbesar);
         foreach (Collider2D c in cols)
         {
             if (c.CompareTag("Player")) 
             { 
-                terdeteksi = true; 
+                float jarak = Vector2.Distance(transform.position, c.transform.position);
+                if (jarak <= radiusInteraksi) dalamRadiusInteraksi = true;
+                if (jarak <= radiusDeteksi) dalamRadiusDeteksi = true;
                 break; 
             }
         }
 
-        // Jika player masuk ke radius
-        if (terdeteksi && !playerDiDekat)
+        playerDiDekat = dalamRadiusInteraksi;
+
+        if (dalamRadiusDeteksi)
         {
-            playerDiDekat = true;
             if (ikonPanah != null) ikonPanah.SetActive(true);
         }
-        // Jika player keluar dari radius
-        else if (!terdeteksi && playerDiDekat)
+        else
         {
-            playerDiDekat = false;
             if (ikonPanah != null) ikonPanah.SetActive(false);
         }
     }
 
     // --- SISTEM GIZMOS ---
-    // Menggambar lingkaran biru muda di layar Scene Unity (Hanya terlihat saat objek pintu diklik)
+    // Menggambar lingkaran di layar Scene Unity (Hanya terlihat saat objek pintu diklik)
     private void OnDrawGizmosSelected()
     {
+        // Jarak interaksi (cyan)
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, radiusInteraksi);
+
+        // Jarak deteksi ikon (hijau)
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radiusDeteksi);
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OpponentData
   namaMusuh: 
   visualMusuh: {fileID: 0}
-  animasiMusuh: {fileID: 0}
-  tingkatKesulitan: 16
+  animasiMusuh: {fileID: 9100000, guid: 2627406637e8d0544b0b799d0f1f359e, type: 2}
+  tingkatKesulitan: 35
   daftarLagu:
-  - {fileID: 11400000, guid: f42b9e0371d0ab54fbd0fc312dc60064, type: 2}
+  - {fileID: 11400000, guid: 0bdd9b1c07e1d434b84295fbef9fc916, type: 2}

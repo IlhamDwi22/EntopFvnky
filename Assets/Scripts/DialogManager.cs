@@ -1,78 +1,87 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System; // Wajib ditambahkan untuk menggunakan System.Action
+using System;
+using System.Collections;
 
 public class DialogManager : MonoBehaviour
 {
     public static DialogManager Instance;
 
-    [Header("UI Component")]
-    [Tooltip("Tarik GameObject Panel/Kotak Dialog dari Canvas ke sini")]
-    public GameObject dialogPanel;
-    
-    [Tooltip("Tarik teks untuk Nama Karakter ke sini")]
-    public Text textNamaLegacy;
-    public TextMeshProUGUI textNamaTMP;
+    [Header("Komponen UI (TextMeshPro)")]
+    public GameObject panelDialog;
+    public TextMeshProUGUI textIsi;
+    public TextMeshProUGUI textNama; 
 
-    [Tooltip("Tarik teks untuk Isi Dialog ke sini")]
+    [Header("Komponen UI (Legacy)")]
     public Text textIsiLegacy;
-    public TextMeshProUGUI textIsiTMP;
+    public Text textNamaLegacy;
 
-    private DialogData dataAktif;
-    private int indeksPercakapanSaatIni;
+    [Header("Efek Animasi (Typewriter)")]
+    [Tooltip("Waktu jeda antar huruf. Semakin kecil angkanya, semakin cepat ngetiknya.")]
+    public float kecepatanKetik = 0.04f; 
+    public AudioSource sumberSuara;
+    public AudioClip suaraKetik;
+
+    private DialogData dialogAktif;
+    private int indexDialog = 0;
+    private Action callbackSelesai;
+    
+    private bool sedangMengetik = false;
     public bool sedangBicara { get; private set; } = false;
-
-    // Menyimpan perintah/aksi apa yang harus dilakukan setelah dialog selesai
-    private Action aksiSetelahDialog;
+    private Coroutine coroutineKetik;
+    private string teksFullSaatIni = "";
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
     }
 
     private void Start()
     {
-        if (dialogPanel != null) dialogPanel.SetActive(false);
+        if (panelDialog != null) panelDialog.SetActive(false);
     }
 
-    private void Update()
+    public void MulaiDialog(DialogData data, Action onSelesai = null)
     {
-        if (!sedangBicara) return;
+        dialogAktif = data;
+        callbackSelesai = onSelesai;
+        indexDialog = 0;
+        sedangBicara = true;
 
-        // Tekan Spasi, Enter, atau Klik Kiri untuk lanjut ke teks berikutnya
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
-        {
-            TampilkanKalimatBerikutnya();
-        }
+        if (panelDialog != null) panelDialog.SetActive(true);
+        TampilkanBarisBerikutnya();
     }
 
-    // Fungsi MulaiDialog sekarang menerima parameter tambahan berupa aksi/perintah
-    public void MulaiDialog(DialogData data, Action aksiSelesai = null)
+    private void TampilkanBarisBerikutnya()
     {
-        if (data == null || data.daftarPercakapan.Length == 0)
+        if (dialogAktif == null || dialogAktif.daftarPercakapan == null)
         {
-            Debug.LogWarning("[DialogManager] Data Dialog kosong atau tidak ditemukan!");
+            SelesaiDialog();
             return;
         }
 
-        dataAktif = data;
-        indeksPercakapanSaatIni = 0;
-        sedangBicara = true;
-        aksiSetelahDialog = aksiSelesai; // Simpan aksinya
-
-        if (dialogPanel != null) dialogPanel.SetActive(true);
-
-        UpdateTeksDialog();
-    }
-
-    private void TampilkanKalimatBerikutnya()
-    {
-        indeksPercakapanSaatIni++;
-
-        if (indeksPercakapanSaatIni < dataAktif.daftarPercakapan.Length)
+        if (indexDialog < dialogAktif.daftarPercakapan.Length) 
         {
-            UpdateTeksDialog();
+            // Ambil data percakapan saat ini
+            Percakapan percakapanAktif = dialogAktif.daftarPercakapan[indexDialog];
+
+            // Set nama pembicara jika komponen UI tersedia
+            if (textNama != null)
+            {
+                textNama.text = percakapanAktif.namaPembicara;
+            }
+            if (textNamaLegacy != null)
+            {
+                textNamaLegacy.text = percakapanAktif.namaPembicara;
+            }
+
+            // Ambil teks lengkap dari memori
+            teksFullSaatIni = percakapanAktif.kalimat;
+            
+            // Hentikan ketikan sebelumnya (jika ada error) lalu mulai ketikan baru
+            if (coroutineKetik != null) StopCoroutine(coroutineKetik);
+            coroutineKetik = StartCoroutine(AnimasiKetik(teksFullSaatIni));
         }
         else
         {
@@ -80,28 +89,61 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    private void UpdateTeksDialog()
+    private IEnumerator AnimasiKetik(string teks)
     {
-        Percakapan percakapanAktif = dataAktif.daftarPercakapan[indeksPercakapanSaatIni];
-        
-        if (textNamaLegacy != null) textNamaLegacy.text = percakapanAktif.namaPembicara;
-        if (textNamaTMP != null) textNamaTMP.text = percakapanAktif.namaPembicara;
+        sedangMengetik = true;
+        if (textIsi != null) textIsi.text = ""; // Kosongkan teks di layar sebelum mulai ngetik
+        if (textIsiLegacy != null) textIsiLegacy.text = "";
 
-        if (textIsiLegacy != null) textIsiLegacy.text = percakapanAktif.kalimat;
-        if (textIsiTMP != null) textIsiTMP.text = percakapanAktif.kalimat;
+        string teksBerjalan = "";
+        // Ubah kalimat menjadi daftar huruf, lalu munculkan satu per satu
+        foreach (char huruf in teks.ToCharArray())
+        {
+            teksBerjalan += huruf;
+            if (textIsi != null) textIsi.text = teksBerjalan;
+            if (textIsiLegacy != null) textIsiLegacy.text = teksBerjalan;
+
+            // Mainkan suara HANYA jika hurufnya bukan spasi kosong
+            if (huruf != ' ' && sumberSuara != null && suaraKetik != null)
+            {
+                // Mengubah pitch/nada suara secara acak sedikit agar tidak terdengar monoton seperti robot
+                sumberSuara.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+                sumberSuara.PlayOneShot(suaraKetik);
+            }
+
+            // Tunggu beberapa milidetik sebelum memunculkan huruf selanjutnya
+            yield return new WaitForSeconds(kecepatanKetik);
+        }
+
+        sedangMengetik = false;
+    }
+
+    private void Update()
+    {
+        // Deteksi input pemain: Klik Kiri Mouse, tombol Spasi, atau E
+        if (panelDialog != null && panelDialog.activeSelf && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E)))
+        {
+            if (sedangMengetik)
+            {
+                // JIKA TEKS SEDANG BERJALAN: Pemain ingin Skip/Percepat
+                if (coroutineKetik != null) StopCoroutine(coroutineKetik);
+                if (textIsi != null) textIsi.text = teksFullSaatIni; // Langsung tampilkan teks utuh
+                if (textIsiLegacy != null) textIsiLegacy.text = teksFullSaatIni;
+                sedangMengetik = false;
+            }
+            else
+            {
+                // JIKA TEKS SUDAH SELESAI DIKETIK: Lanjut ke dialog berikutnya
+                indexDialog++;
+                TampilkanBarisBerikutnya();
+            }
+        }
     }
 
     private void SelesaiDialog()
     {
         sedangBicara = false;
-        if (dialogPanel != null) dialogPanel.SetActive(false);
-        dataAktif = null;
-
-        // Jika ada perintah/aksi setelah dialog, jalankan sekarang!
-        if (aksiSetelahDialog != null)
-        {
-            aksiSetelahDialog.Invoke();
-            aksiSetelahDialog = null; // Kosongkan kembali agar tidak terpanggil dua kali
-        }
+        if (panelDialog != null) panelDialog.SetActive(false);
+        if (callbackSelesai != null) callbackSelesai.Invoke();
     }
 }

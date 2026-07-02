@@ -6,30 +6,18 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    [System.Serializable]
-public class DataBarang
-{
-    public string itemID;
-    public string namaBarang;
-    public Sprite ikonBarang;
-}
-
     [Header("UI Inventory")]
     public GameObject inventoryPanel;
     public Transform slotContainer;
     public GameObject slotPrefab;
 
-
-    [Header("Database Item Manual")]
-    public List<DataBarang> databaseBarang;
-
-
+    [Header("Database Item")]
+    [Tooltip("Masukkan Asset database ScriptableObject item Anda ke sini")]
+    public ItemDatabase itemDatabase;
 
     [Header("UI Dokumen")]
     public GameObject panelKertas;
     public TextMeshProUGUI teksCatatan;
-
-
 
     private void Awake()
     {
@@ -43,19 +31,14 @@ public class DataBarang
         }
     }
 
-
-
     private void Start()
     {
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
 
-
         if (panelKertas != null)
             panelKertas.SetActive(false);
     }
-
-
 
     private void Update()
     {
@@ -65,42 +48,30 @@ public class DataBarang
         }
     }
 
-
-
     public void ToggleInventory()
     {
-
         if(inventoryPanel == null)
             return;
 
-
-
-        bool buka =
-            !inventoryPanel.activeSelf;
-
+        bool buka = !inventoryPanel.activeSelf;
         inventoryPanel.SetActive(buka);
 
         if(buka)
         {
             Time.timeScale = 0f;
-
             RefreshInventoryUI();
         }
         else
         {
             Time.timeScale = 1f;
 
-
             if(panelKertas != null)
                 panelKertas.SetActive(false);
         }
-
     }
-
 
     public void RefreshInventoryUI()
     {
-
         foreach(Transform child in slotContainer)
         {
             Destroy(child.gameObject);
@@ -111,160 +82,114 @@ public class DataBarang
 
         foreach(string id in GlobalBattleState.daftarBarangQuest)
         {
-            DataBarang data =
-                CariDataBarang(id);
+            ItemData data = CariDataBarang(id);
 
             if(data == null)
                 continue;
 
-            GameObject slot =
-                Instantiate(
-                    slotPrefab,
-                    slotContainer
-                );
-
-
-            InventorySlotUI slotUI =
-                slot.GetComponent<InventorySlotUI>();
+            GameObject slot = Instantiate(slotPrefab, slotContainer);
+            InventorySlotUI slotUI = slot.GetComponent<InventorySlotUI>();
 
             if(slotUI != null)
             {
-
                 slotUI.SetupSlot(
                     data.ikonBarang,
                     data.namaBarang,
                     data.itemID
                 );
-
             }
-
         }
-
     }
 
-
-    private DataBarang CariDataBarang(string id)
+    private ItemData CariDataBarang(string id)
     {
-
-
-        // Cari item manual
-        foreach(DataBarang data in databaseBarang)
+        // 1. Cari di database ScriptableObject
+        if (itemDatabase != null && itemDatabase.allItems != null)
         {
-
-            if(data.itemID == id)
+            foreach(ItemData data in itemDatabase.allItems)
             {
-                return data;
+                if(data != null && data.itemID == id)
+                {
+                    return data;
+                }
             }
-
         }
 
-
-        // Cari item otomatis (kertas)
-        RuntimeItemData runtime =
-            GlobalBattleState.CariRuntimeItem(id);
-
+        // 2. Cari di database runtime (kertas/clue yang diambil selama permainan)
+        RuntimeItemData runtime = GlobalBattleState.CariRuntimeItem(id);
         if(runtime != null)
         {
-
-            return new DataBarang()
-            {
-                itemID = runtime.id,
-                namaBarang = runtime.nama,
-                ikonBarang = runtime.sprite
-            };
-
+            // Buat instance ItemData sementara untuk representasi di UI
+            ItemData tempItem = ScriptableObject.CreateInstance<ItemData>();
+            tempItem.itemID = runtime.id;
+            tempItem.namaBarang = runtime.nama;
+            tempItem.ikonBarang = runtime.sprite;
+            tempItem.isDokumen = true;
+            tempItem.isiTeks = runtime.isiTeks;
+            return tempItem;
         }
 
         return null;
-
     }
 
     public void GunakanBarang(string id)
     {
-        // 1. JIKA ADA MESIN GESEK DI SCENE INI
+        ItemData data = CariDataBarang(id);
+        if (data == null) return;
+
+        // 1. CEK DOKUMEN (Kertas): Dokumen selalu dibaca, tidak digesek!
+        if (data.isDokumen)
+        {
+            BukaDokumen(data);
+            return;
+        }
+
+        // 2. JIKA ADA MESIN GESEK DI SCENE INI (Untuk barang non-dokumen seperti Kartu Akses)
         if (MesinGesekKartu.Instance != null)
         {
             ToggleInventory(); // Ini yang membuat tas auto-tertutup!
-            Sprite ikon = CariIkonBarang(id); 
+            Sprite ikon = data.ikonBarang; 
             MesinGesekKartu.Instance.MunculkanBarangDiLayar(id, ikon);
             return; // Hentikan kode di sini agar tidak baca ke bawah
-        }
-
-        // 2. CEK DOKUMEN RUNTIME (Kertas)
-        RuntimeItemData runtime = GlobalBattleState.CariRuntimeItem(id);
-        if(runtime != null)
-        {
-            BukaDokumen(runtime);
-            return;
-        }
-
-        // 3. CEK DOKUMEN MANUAL LAMA (Peti)
-        if(id == "CatatanSandi")
-        {
-            if(panelKertas != null) panelKertas.SetActive(true);
-            if(teksCatatan != null)
-            {
-                teksCatatan.text = "Sebuah catatan bernoda darah...\n\n\"Kombinasi brankas hari ini adalah: <color=red>" + PetiPassword.passwordRahasiaSaatIni + "</color>\"";
-            }
-            return;
         }
     }
 
     // Fungsi pembantu untuk mengambil Sprite gambar dari tas
     private Sprite CariIkonBarang(string id)
     {
-        foreach(DataBarang data in databaseBarang) 
-        {
-            if(data.itemID == id) return data.ikonBarang;
-        }
-        RuntimeItemData runtime = GlobalBattleState.CariRuntimeItem(id);
-        if(runtime != null) return runtime.sprite;
+        ItemData data = CariDataBarang(id);
+        if (data != null) return data.ikonBarang;
         return null;
     }
 
-
-    private void BukaDokumen(RuntimeItemData data)
+    private void BukaDokumen(ItemData data)
     {
-
-
-        if(panelKertas == null ||
-           teksCatatan == null)
+        if(panelKertas == null || teksCatatan == null)
             return;
 
         panelKertas.SetActive(true);
 
-
-        // Default semua kertas
-        teksCatatan.text =
-            "Dokumen : " +
-            data.nama +
-            "\n\nTidak ada tulisan.";
-
-
-        // Khusus password
-        if(data.id == "Catatan Sandi")
+        // Jika diset menampilkan password brankas secara dinamis
+        if (data.menampilkanPasswordBrankas)
         {
-
-            teksCatatan.text =
-            "Sebuah catatan bernoda darah...\n\n" +
-            "\"Kombinasi brankas hari ini adalah: <color=red>" +
-            PetiPassword.passwordRahasiaSaatIni +
-            "</color>\"";
-
+            teksCatatan.text = "Sebuah catatan bernoda darah...\n\n\"Kombinasi brankas hari ini adalah: <color=red>" + PetiPassword.passwordRahasiaSaatIni + "</color>\"";
         }
-
-
+        // Jika data item memiliki isi teks kustom, gunakan itu
+        else if (!string.IsNullOrEmpty(data.isiTeks))
+        {
+            teksCatatan.text = data.isiTeks;
+        }
+        else
+        {
+            teksCatatan.text = "Dokumen : " + data.namaBarang + "\n\nTidak ada tulisan.";
+        }
     }
-
 
     public void TutupPanelKertas()
     {
-
         if(panelKertas != null)
         {
             panelKertas.SetActive(false);
         }
-
     }
-
 }

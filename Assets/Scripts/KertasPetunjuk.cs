@@ -4,9 +4,15 @@ using TMPro;
 [RequireComponent(typeof(SpriteRenderer))]
 public class KertasPetunjuk : MonoBehaviour
 {
+    [Header("Identitas Item (Unique)")]
+    [Tooltip("ID unik kertas. Harus beda antara kertas satu dengan yang lain! Jika kosong, akan otomatis menggunakan nama GameObject.")]
+    public string idKertas;
+
     [Header("Deteksi Player (Gizmos)")]
-    [Tooltip("Atur seberapa jauh player bisa berinteraksi dengan benda ini")]
-    public float radiusInteraksi = 1.5f;
+    [Tooltip("Jarak maksimal player untuk melakukan interaksi (menekan tombol E)")]
+    public float radiusInteraksi = 1.2f;
+    [Tooltip("Jarak maksimal player untuk memunculkan ikon penunjuk / panah")]
+    public float radiusDeteksi = 3f;
 
     [Header("UI Kertas")]
     public GameObject panelKertas;
@@ -15,13 +21,43 @@ public class KertasPetunjuk : MonoBehaviour
     [Header("Visual Indikator")]
     public GameObject ikonPanah;
 
+    [Header("Isi Tulisan Kertas")]
+    [Tooltip("Centang ini jika kertas ini khusus untuk menampilkan password acak brankas darah secara dinamis.")]
+    public bool menampilkanPasswordBrankas = false;
+
+    [Tooltip("Isi tulisan jika tidak menampilkan password brankas.")]
+    [TextArea(5, 10)]
+    public string isiTulisan = "Tulis pesan kertas di sini...";
+
     private bool playerDiDekat = false;
     private bool sedangMembaca = false;
     private bool sudahDiambil = false;
     private SpriteRenderer spriteRenderer;
 
+    private string GetItemID()
+    {
+        return string.IsNullOrEmpty(idKertas) ? gameObject.name : idKertas;
+    }
+
+    private string DapatkanIsiTeks()
+    {
+        if (menampilkanPasswordBrankas)
+        {
+            return "Sebuah catatan bernoda darah...\n\n\"Kombinasi brankas hari ini adalah: <color=red>" + PetiPassword.passwordRahasiaSaatIni + "</color>\"";
+        }
+        return isiTulisan;
+    }
+
     private void Start()
     {
+        // --- KODE BARU: CEK MEMORI ---
+        // Jika id kertas ini sudah tercatat ada di dalam tas, langsung hancurkan!
+        if (GlobalBattleState.CekBarang(GetItemID()))
+        {
+            Destroy(gameObject);
+            return; // Hentikan proses agar kode di bawahnya tidak error
+        }
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (panelKertas != null) panelKertas.SetActive(false);
@@ -44,11 +80,7 @@ public class KertasPetunjuk : MonoBehaviour
 
                 if (teksCatatan != null)
                 {
-                    teksCatatan.text = 
-                    "Sebuah catatan bernoda darah...\n\n" +
-                    "\"Kombinasi brankas hari ini adalah: <color=red>" +
-                    PetiPassword.passwordRahasiaSaatIni +
-                    "</color>\"";
+                    teksCatatan.text = DapatkanIsiTeks();
                 }
                 Time.timeScale = 0f;
             }
@@ -58,8 +90,8 @@ public class KertasPetunjuk : MonoBehaviour
                 if (!sudahDiambil)
                 {
                     sudahDiambil = true;
-                    string idItem = gameObject.name;
-                    GlobalBattleState.TambahItemRuntime(idItem, spriteRenderer.sprite);
+                    string idItem = GetItemID();
+                    GlobalBattleState.TambahItemRuntime(idItem, spriteRenderer.sprite, DapatkanIsiTeks());
                     GlobalBattleState.TambahBarang(idItem);
                     Destroy(gameObject);
                 }
@@ -70,41 +102,54 @@ public class KertasPetunjuk : MonoBehaviour
     // --- SISTEM SENSOR RADIUS ---
     private void CekRadiusPlayer()
     {
-        bool terdeteksi = false;
+        bool dalamRadiusInteraksi = false;
+        bool dalamRadiusDeteksi = false;
         
-        // Membaca semua objek yang masuk ke dalam lingkaran radius
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusInteraksi);
+        // Membaca semua objek yang masuk ke dalam radius terbesar
+        float radiusTerbesar = Mathf.Max(radiusInteraksi, radiusDeteksi);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusTerbesar);
         foreach (Collider2D c in cols)
         {
             if (c.CompareTag("Player")) 
             { 
-                terdeteksi = true; 
+                float jarak = Vector2.Distance(transform.position, c.transform.position);
+                if (jarak <= radiusInteraksi) dalamRadiusInteraksi = true;
+                if (jarak <= radiusDeteksi) dalamRadiusDeteksi = true;
                 break; 
             }
         }
 
-        // Jika player baru saja masuk ke radius lingkaran
-        if (terdeteksi && !playerDiDekat)
+        playerDiDekat = dalamRadiusInteraksi;
+
+        // Logika menyalakan/mematikan ikon
+        if (dalamRadiusDeteksi)
         {
-            playerDiDekat = true;
             if (!sedangMembaca && ikonPanah != null) ikonPanah.SetActive(true);
         }
-        // Jika player baru saja keluar dari radius lingkaran
-        else if (!terdeteksi && playerDiDekat)
+        else
         {
-            playerDiDekat = false;
+            if (ikonPanah != null) ikonPanah.SetActive(false);
+        }
+
+        // Jika player menjauh melebihi jarak interaksi saat sedang membaca, tutup kertas secara otomatis
+        if (!dalamRadiusInteraksi && sedangMembaca)
+        {
             sedangMembaca = false;
             if (panelKertas != null) panelKertas.SetActive(false);
-            if (ikonPanah != null) ikonPanah.SetActive(false);
             Time.timeScale = 1f;
         }
     }
 
     // --- SISTEM GIZMOS ---
-    // Menggambar lingkaran kuning di layar Scene Unity (Hanya terlihat saat objek diklik)
+    // Menggambar lingkaran di layar Scene Unity (Hanya terlihat saat objek diklik)
     private void OnDrawGizmosSelected()
     {
+        // Jarak interaksi (kuning)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radiusInteraksi);
+
+        // Jarak deteksi ikon (hijau)
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radiusDeteksi);
     }
 }

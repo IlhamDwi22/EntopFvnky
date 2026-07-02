@@ -15,3 +15,9 @@ MonoBehaviour:
   daftarPercakapan:
   - namaPembicara: Zero
     kalimat: Mereka bahkan memutar lagu ini di tempat umum?!
+  - namaPembicara: Zero
+    kalimat: 'Aku harus mencari jalan masuk ke pintu ini '
+  - namaPembicara: Zero
+    kalimat: 'Pintu di depan  Membutuhkan Access Card  '
+  - namaPembicara: Zero
+    kalimat: Sepertinya Pintu di belakang sangatlah aneh

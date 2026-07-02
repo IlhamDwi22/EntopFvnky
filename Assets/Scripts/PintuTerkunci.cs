@@ -16,7 +16,10 @@ public class PintuTerkunci : MonoBehaviour
     public Transform titikMendarat;
 
     [Header("Sistem Interaksi")]
-    public float radiusInteraksi = 1.5f;
+    [Tooltip("Jarak maksimal player untuk berinteraksi (menekan tombol E)")]
+    public float radiusInteraksi = 1.2f;
+    [Tooltip("Jarak maksimal player untuk memunculkan ikon penunjuk / panah")]
+    public float radiusDeteksi = 3f;
     public GameObject ikonPanah;
 
     private bool playerDiDekat = false;
@@ -72,17 +75,42 @@ public class PintuTerkunci : MonoBehaviour
 
     private void CekRadiusPlayer()
     {
-        bool terdeteksi = false;
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusInteraksi);
-        foreach (Collider2D c in cols) { if (c.CompareTag("Player")) { terdeteksi = true; break; } }
+        bool dalamRadiusInteraksi = false;
+        bool dalamRadiusDeteksi = false;
+        
+        float radiusTerbesar = Mathf.Max(radiusInteraksi, radiusDeteksi);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusTerbesar);
+        foreach (Collider2D c in cols) 
+        { 
+            if (c.CompareTag("Player")) 
+            { 
+                float jarak = Vector2.Distance(transform.position, c.transform.position);
+                if (jarak <= radiusInteraksi) dalamRadiusInteraksi = true;
+                if (jarak <= radiusDeteksi) dalamRadiusDeteksi = true;
+                break; 
+            } 
+        }
 
-        if (terdeteksi && !playerDiDekat) { playerDiDekat = true; if (ikonPanah != null) ikonPanah.SetActive(true); }
-        else if (!terdeteksi && playerDiDekat) { playerDiDekat = false; if (ikonPanah != null) ikonPanah.SetActive(false); }
+        playerDiDekat = dalamRadiusInteraksi;
+
+        if (dalamRadiusDeteksi)
+        {
+            if (ikonPanah != null) ikonPanah.SetActive(true);
+        }
+        else
+        {
+            if (ikonPanah != null) ikonPanah.SetActive(false);
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
+        // Jarak interaksi (magenta)
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, radiusInteraksi);
+
+        // Jarak deteksi ikon (hijau)
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radiusDeteksi);
     }
 }

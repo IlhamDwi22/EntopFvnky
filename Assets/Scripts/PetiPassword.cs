@@ -4,9 +4,15 @@ public class PetiPassword : MonoBehaviour
 {
     public static string passwordRahasiaSaatIni;
 
+    [Header("Identitas Peti (Unique)")]
+    [Tooltip("ID unik peti. Harus berbeda untuk setiap peti di game! Jika kosong, otomatis menggunakan nama GameObject.")]
+    public string idPeti;
+
     [Header("Deteksi Player (Gizmos)")]
-    [Tooltip("Atur seberapa jauh player bisa berinteraksi dengan peti ini")]
-    public float radiusInteraksi = 2f;
+    [Tooltip("Jarak maksimal player untuk melakukan interaksi (menekan tombol E)")]
+    public float radiusInteraksi = 1.5f;
+    [Tooltip("Jarak maksimal player untuk memunculkan ikon penunjuk / panah")]
+    public float radiusDeteksi = 3.5f;
 
     [Header("Pengaturan Hadiah Peti")]
     public string idBarangHadiah = "DokumenPenting";
@@ -21,6 +27,11 @@ public class PetiPassword : MonoBehaviour
     private bool playerDiDekat = false;
     private bool sudahTerbuka = false;
 
+    private string GetIDPeti()
+    {
+        return string.IsNullOrEmpty(idPeti) ? gameObject.name : idPeti;
+    }
+
     private void Awake()
     {
         int angkaAcak = Random.Range(0, 10000);
@@ -29,6 +40,14 @@ public class PetiPassword : MonoBehaviour
 
     private void Start()
     {
+        // --- KODE BARU: CEK MEMORI ---
+        // Cek apakah peti ini sudah pernah dibuka sebelumnya
+        if (GlobalBattleState.CekPetiTerbuka(GetIDPeti()))
+        {
+            Destroy(gameObject);
+            return; // Hentikan proses
+        }
+
         if (ikonPanah != null) ikonPanah.SetActive(false);
     }
 
@@ -50,26 +69,31 @@ public class PetiPassword : MonoBehaviour
     // --- SISTEM SENSOR RADIUS ---
     private void CekRadiusPlayer()
     {
-        bool terdeteksi = false;
+        bool dalamRadiusInteraksi = false;
+        bool dalamRadiusDeteksi = false;
         
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusInteraksi);
+        float radiusTerbesar = Mathf.Max(radiusInteraksi, radiusDeteksi);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radiusTerbesar);
         foreach (Collider2D c in cols)
         {
             if (c.CompareTag("Player")) 
             { 
-                terdeteksi = true; 
+                float jarak = Vector2.Distance(transform.position, c.transform.position);
+                if (jarak <= radiusInteraksi) dalamRadiusInteraksi = true;
+                if (jarak <= radiusDeteksi) dalamRadiusDeteksi = true;
                 break; 
             }
         }
 
-        if (terdeteksi && !playerDiDekat)
+        playerDiDekat = dalamRadiusInteraksi;
+
+        // Logika menyalakan/mematikan ikon
+        if (dalamRadiusDeteksi && !sudahTerbuka)
         {
-            playerDiDekat = true;
-            if (!sudahTerbuka && ikonPanah != null) ikonPanah.SetActive(true);
+            if (ikonPanah != null) ikonPanah.SetActive(true);
         }
-        else if (!terdeteksi && playerDiDekat)
+        else
         {
-            playerDiDekat = false;
             if (ikonPanah != null) ikonPanah.SetActive(false);
         }
     }
@@ -77,8 +101,13 @@ public class PetiPassword : MonoBehaviour
     // --- SISTEM GIZMOS ---
     private void OnDrawGizmosSelected()
     {
+        // Jarak interaksi (kuning)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radiusInteraksi);
+
+        // Jarak deteksi ikon (hijau)
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radiusDeteksi);
     }
 
     public void VerifikasiPassword(string inputUser)
@@ -88,6 +117,7 @@ public class PetiPassword : MonoBehaviour
             sudahTerbuka = true;
             if (ikonPanah != null) ikonPanah.SetActive(false); 
             
+            GlobalBattleState.BukaPeti(GetIDPeti()); // Simpan status peti terbuka
             GlobalBattleState.TambahBarang(idBarangHadiah);
             
             if (DialogManager.Instance != null && dialogBerhasil != null)

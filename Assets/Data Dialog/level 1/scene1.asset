@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: scene1
   m_EditorClassIdentifier: Assembly-CSharp::DialogData
   daftarPercakapan:
-  - namaPembicara: 
+  - namaPembicara: .
     kalimat: Karya utamaku dirampas oleh mereka yang berdasi.
-  - namaPembicara: 
+  - namaPembicara: .
     kalimat: Sekarang, laguku dijual murah di jalanan kotor ini.
