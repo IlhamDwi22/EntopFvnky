@@ -1,0 +1,1157 @@
+fileFormatVersion: 2
+guid: 3555650b99019d5429cda69051cfdd7f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6732883238069900705
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_0
+  - first:
+      213: -6698783470356019943
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_1
+  - first:
+      213: -8689237928610166965
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_2
+  - first:
+      213: 3230603703843195242
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_3
+  - first:
+      213: -6672740252116857933
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_4
+  - first:
+      213: 1753383438263511067
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_5
+  - first:
+      213: -7852617986108115824
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_6
+  - first:
+      213: 3663746321086006048
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_7
+  - first:
+      213: 6238259715975295668
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_8
+  - first:
+      213: -8516525505901816427
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_9
+  - first:
+      213: -6607780986474156088
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_10
+  - first:
+      213: -3966687203477525525
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_11
+  - first:
+      213: 3857711741686388635
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_12
+  - first:
+      213: 4090140869726407962
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_13
+  - first:
+      213: 7296588097954462213
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_14
+  - first:
+      213: -4411989518954278158
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_15
+  - first:
+      213: 185104566720104093
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_16
+  - first:
+      213: -8929968208806766834
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_17
+  - first:
+      213: -7127427653356010436
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_18
+  - first:
+      213: 9124199538909781423
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_19
+  - first:
+      213: 4708592675897627164
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_20
+  - first:
+      213: 323196886289401142
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_21
+  - first:
+      213: -4240535081432077443
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_22
+  - first:
+      213: 7794231810429099841
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_23
+  - first:
+      213: 2138434169361908142
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_24
+  - first:
+      213: 2391244948597925997
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_25
+  - first:
+      213: -7084368804537829272
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_26
+  - first:
+      213: -5418663965709244370
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_27
+  - first:
+      213: 2230545280446913157
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_28
+  - first:
+      213: -1698886217249497354
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_29
+  - first:
+      213: 7396438742993139798
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_30
+  - first:
+      213: 5610315949661443403
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_31
+  - first:
+      213: 5515545018745652920
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_32
+  - first:
+      213: 457173908149993029
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_33
+  - first:
+      213: -1873952648862520414
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_34
+  - first:
+      213: -7436847744884338308
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_35
+  - first:
+      213: -5637593357181203406
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_36
+  - first:
+      213: 4831847188403876433
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_37
+  - first:
+      213: 393822883179206527
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_38
+  - first:
+      213: -3826437907002012434
+    second: Platformer-Pixel-Art-Hell-2D-Tileset2_39
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_0
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 814
+        width: 72
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5a69a80e5eff82a0800000000000000
+      internalID: -6732883238069900705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_1
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 813
+        width: 137
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 915cb26ece32903a0800000000000000
+      internalID: -6698783470356019943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_2
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 814
+        width: 69
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4707583420a96780800000000000000
+      internalID: -8689237928610166965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_3
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 741
+        width: 145
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6982a1c3f865dc20800000000000000
+      internalID: 3230603703843195242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_4
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 835
+        width: 134
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bbcf1a281aa563a0800000000000000
+      internalID: -6672740252116857933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_5
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 823
+        width: 69
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b18efb082f4455810800000000000000
+      internalID: 1753383438263511067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_6
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 622
+        width: 325
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094be2deb85e50390800000000000000
+      internalID: -7852617986108115824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_7
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 742
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 023c97f1edd38d230800000000000000
+      internalID: 3663746321086006048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_8
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 741
+        width: 137
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b23653f820c29650800000000000000
+      internalID: 6238259715975295668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_9
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 742
+        width: 69
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5951b24cc293fc980800000000000000
+      internalID: -8516525505901816427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_10
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 756
+        width: 89
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cfa0abc3327c44a0800000000000000
+      internalID: -6607780986474156088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_11
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 752
+        width: 69
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beb62ad310f73f8c0800000000000000
+      internalID: -3966687203477525525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_12
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 675
+        width: 70
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b971219d368598530800000000000000
+      internalID: 3857711741686388635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_13
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 677
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1d8955537913c830800000000000000
+      internalID: 4090140869726407962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_14
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 684
+        width: 67
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50a3be25730b24560800000000000000
+      internalID: 7296588097954462213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_15
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 669
+        width: 72
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f2dbf188e675c2c0800000000000000
+      internalID: -4411989518954278158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_16
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 669
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9687a96f9f919200800000000000000
+      internalID: 185104566720104093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_17
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 705
+        width: 63
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e079a822a31621480800000000000000
+      internalID: -8929968208806766834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_18
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 694
+        width: 134
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c344b6fdf4a461d90800000000000000
+      internalID: -7127427653356010436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_19
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 604
+        width: 70
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad1088732baf9e70800000000000000
+      internalID: 9124199538909781423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_20
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 604
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1252ee6718485140800000000000000
+      internalID: 4708592675897627164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_21
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 613
+        width: 64
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 635cacf0bd93c7400800000000000000
+      internalID: 323196886289401142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_22
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 598
+        width: 72
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ba8ad8fc79625c0800000000000000
+      internalID: -4240535081432077443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_23
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 597
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14f1da5398caa2c60800000000000000
+      internalID: 7794231810429099841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_24
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 632
+        width: 133
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea1cf501c8e3dad10800000000000000
+      internalID: 2138434169361908142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_25
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 632
+        width: 64
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6860248c986f2120800000000000000
+      internalID: 2391244948597925997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_26
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 526
+        width: 72
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 868f9ab5b144fad90800000000000000
+      internalID: -7084368804537829272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_27
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 526
+        width: 131
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e28e0be15d90dc4b0800000000000000
+      internalID: -5418663965709244370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_28
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 525
+        width: 212
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a56785d1d74fe10800000000000000
+      internalID: 2230545280446913157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_29
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 302
+        width: 679
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fe590b8cf75c68e0800000000000000
+      internalID: -1698886217249497354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_30
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 437
+        width: 70
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658fa0749dd65a660800000000000000
+      internalID: 7396438742993139798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_31
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 366
+        width: 70
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b455749a1a8dbdd40800000000000000
+      internalID: 5610315949661443403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_32
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 364
+        width: 212
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b68201d8f62b8c40800000000000000
+      internalID: 5515545018745652920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_33
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 292
+        width: 74
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e7bdb4f35385600800000000000000
+      internalID: 457173908149993029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_34
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 293
+        width: 144
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aba5a69ef16ef5e0800000000000000
+      internalID: -1873952648862520414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_35
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 221
+        width: 212
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71118dc0620bc890800000000000000
+      internalID: -7436847744884338308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_36
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 292
+        width: 69
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23ccc1df5be33c1b0800000000000000
+      internalID: -5637593357181203406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_37
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 223
+        width: 73
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15278c9ea6b2e0340800000000000000
+      internalID: 4831847188403876433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_38
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 45
+        width: 582
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77115063d3277500800000000000000
+      internalID: 393822883179206527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Platformer-Pixel-Art-Hell-2D-Tileset2_39
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 45
+        width: 328
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eec4e063ff2c5eac0800000000000000
+      internalID: -3826437907002012434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Platformer-Pixel-Art-Hell-2D-Tileset2_0: -6732883238069900705
+      Platformer-Pixel-Art-Hell-2D-Tileset2_1: -6698783470356019943
+      Platformer-Pixel-Art-Hell-2D-Tileset2_10: -6607780986474156088
+      Platformer-Pixel-Art-Hell-2D-Tileset2_11: -3966687203477525525
+      Platformer-Pixel-Art-Hell-2D-Tileset2_12: 3857711741686388635
+      Platformer-Pixel-Art-Hell-2D-Tileset2_13: 4090140869726407962
+      Platformer-Pixel-Art-Hell-2D-Tileset2_14: 7296588097954462213
+      Platformer-Pixel-Art-Hell-2D-Tileset2_15: -4411989518954278158
+      Platformer-Pixel-Art-Hell-2D-Tileset2_16: 185104566720104093
+      Platformer-Pixel-Art-Hell-2D-Tileset2_17: -8929968208806766834
+      Platformer-Pixel-Art-Hell-2D-Tileset2_18: -7127427653356010436
+      Platformer-Pixel-Art-Hell-2D-Tileset2_19: 9124199538909781423
+      Platformer-Pixel-Art-Hell-2D-Tileset2_2: -8689237928610166965
+      Platformer-Pixel-Art-Hell-2D-Tileset2_20: 4708592675897627164
+      Platformer-Pixel-Art-Hell-2D-Tileset2_21: 323196886289401142
+      Platformer-Pixel-Art-Hell-2D-Tileset2_22: -4240535081432077443
+      Platformer-Pixel-Art-Hell-2D-Tileset2_23: 7794231810429099841
+      Platformer-Pixel-Art-Hell-2D-Tileset2_24: 2138434169361908142
+      Platformer-Pixel-Art-Hell-2D-Tileset2_25: 2391244948597925997
+      Platformer-Pixel-Art-Hell-2D-Tileset2_26: -7084368804537829272
+      Platformer-Pixel-Art-Hell-2D-Tileset2_27: -5418663965709244370
+      Platformer-Pixel-Art-Hell-2D-Tileset2_28: 2230545280446913157
+      Platformer-Pixel-Art-Hell-2D-Tileset2_29: -1698886217249497354
+      Platformer-Pixel-Art-Hell-2D-Tileset2_3: 3230603703843195242
+      Platformer-Pixel-Art-Hell-2D-Tileset2_30: 7396438742993139798
+      Platformer-Pixel-Art-Hell-2D-Tileset2_31: 5610315949661443403
+      Platformer-Pixel-Art-Hell-2D-Tileset2_32: 5515545018745652920
+      Platformer-Pixel-Art-Hell-2D-Tileset2_33: 457173908149993029
+      Platformer-Pixel-Art-Hell-2D-Tileset2_34: -1873952648862520414
+      Platformer-Pixel-Art-Hell-2D-Tileset2_35: -7436847744884338308
+      Platformer-Pixel-Art-Hell-2D-Tileset2_36: -5637593357181203406
+      Platformer-Pixel-Art-Hell-2D-Tileset2_37: 4831847188403876433
+      Platformer-Pixel-Art-Hell-2D-Tileset2_38: 393822883179206527
+      Platformer-Pixel-Art-Hell-2D-Tileset2_39: -3826437907002012434
+      Platformer-Pixel-Art-Hell-2D-Tileset2_4: -6672740252116857933
+      Platformer-Pixel-Art-Hell-2D-Tileset2_5: 1753383438263511067
+      Platformer-Pixel-Art-Hell-2D-Tileset2_6: -7852617986108115824
+      Platformer-Pixel-Art-Hell-2D-Tileset2_7: 3663746321086006048
+      Platformer-Pixel-Art-Hell-2D-Tileset2_8: 6238259715975295668
+      Platformer-Pixel-Art-Hell-2D-Tileset2_9: -8516525505901816427
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

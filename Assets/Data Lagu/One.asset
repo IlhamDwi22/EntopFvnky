@@ -17,5 +17,5 @@ MonoBehaviour:
   fileAudio: {fileID: 8300000, guid: 77ad0d509a8fc144184b6a3fd29a4e1a, type: 3}
   fileChart: {fileID: 4900000, guid: fc1ead79d00fbd541b4faf5c15ffc4e1, type: 3}
   delayMulai: 0
-  kecepatanScroll: 10
+  kecepatanScroll: 8
   penyesuaianOffset: 1.4

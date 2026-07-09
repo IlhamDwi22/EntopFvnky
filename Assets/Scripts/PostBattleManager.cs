@@ -11,7 +11,7 @@ public class PostBattleManager : MonoBehaviour
     private void Start()
     {
         if (panelPilihanRetry != null) panelPilihanRetry.SetActive(false);
-        playerMC = FindObjectOfType<PlayerOverworld>();
+        playerMC = FindFirstObjectByType<PlayerOverworld>();
 
         if (GlobalBattleState.kembaliDariBattle)
         {
@@ -102,6 +102,9 @@ public class PostBattleManager : MonoBehaviour
     {
         if (panelPilihanRetry != null) panelPilihanRetry.SetActive(false);
         
+        // Reset status fase boss
+        BossSceneCutsceneManager.bossFightState = 0;
+
         // Buka kunci pergerakan MC
         if (playerMC != null) playerMC.enabled = true; 
     }

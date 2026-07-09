@@ -447,10 +447,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab815769dccbfaa468f2500b854f2f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WilayahDialog
-  dataDialog: {fileID: 11400000, guid: f0c702c1fc49a5d468ccc7dd3297fc41, type: 2}
+  dataDialog: {fileID: 11400000, guid: 9288ac9fe6dda614d9d200a4bdb42182, type: 2}
   pindahSceneSetelahDialog: 0
   namaSceneCombat: Combat_2
-  dataMusuh: {fileID: 11400000, guid: 8ff8384a2f284e547b674c1b42d0b389, type: 2}
+  dataMusuh: {fileID: 11400000, guid: 7974ef8776c06084aa5a7b079c14ddcb, type: 2}
   dialogMenang: {fileID: 0}
   namaSceneSetelahMenang: 
   dialogKalah: {fileID: 0}
@@ -982,7 +982,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 133, y: -23, z: 0}
+  - first: {x: 125, y: -23, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 3
@@ -2167,7 +2167,7 @@ MonoBehaviour:
   namaSceneTujuan: Level3_PZ
   idPintuTujuan: PT3_2
   titikMendarat: {fileID: 533339385}
-  radiusInteraksi: 3
+  radiusInteraksi: 2.3
   radiusDeteksi: 6
   ikonPanah: {fileID: 1276095266}
 --- !u!61 &832279356
@@ -3764,16 +3764,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab815769dccbfaa468f2500b854f2f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WilayahDialog
-  dataDialog: {fileID: 11400000, guid: d8347e7b318a82943baf7978dba0f620, type: 2}
+  dataDialog: {fileID: 11400000, guid: 7e018656dbd1aac43b59bd7422d8d351, type: 2}
   pindahSceneSetelahDialog: 1
   namaSceneCombat: Combat_3
-  dataMusuh: {fileID: 11400000, guid: 8ff8384a2f284e547b674c1b42d0b389, type: 2}
+  dataMusuh: {fileID: 11400000, guid: 7974ef8776c06084aa5a7b079c14ddcb, type: 2}
   dialogMenang: {fileID: 11400000, guid: 1d571caacae5397429ae688a2db7dcc4, type: 2}
   namaSceneSetelahMenang: Level3
   dialogKalah: {fileID: 0}
-  butuhBarangQuest: 0
-  IDBarangYangDibutuhkan: Gitar_1
-  dialogJikaBarangBelumAda: {fileID: 0}
+  butuhBarangQuest: 1
+  IDBarangYangDibutuhkan: AC_2
+  dialogJikaBarangBelumAda: {fileID: 11400000, guid: 5055b8437e91b60488a7dc5c6572aebd, type: 2}
   picuHanyaSekali: 1
 --- !u!61 &1519464693
 BoxCollider2D:

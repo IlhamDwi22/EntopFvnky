@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829afb2c03498d94999e8f3fac0af189, type: 3}
   m_Name: Data_Dialog_Baru
   m_EditorClassIdentifier: Assembly-CSharp::DialogData
-  daftarPercakapan: []
+  daftarPercakapan:
+  - namaPembicara: ????
+    kalimat: Kembalilah Padaku Jika Kamu Sudah Memiliki Access Card!

@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: e03e4fcd200b39d499f7bf70b8e34bd0
+guid: cf2c6aa3a4c6ffe4cb833fd29cad1de5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -40319879806604371
-    second: idle level 3_0
+      213: 5295257814545548099
+    second: Idle Level 4_0
   - first:
-      213: -6805988583032899305
-    second: idle level 3_1
+      213: -4550708467953326525
+    second: Idle Level 4_1
   - first:
-      213: -2126145782352320669
-    second: idle level 3_2
+      213: -3068791550404591474
+    second: Idle Level 4_2
   - first:
-      213: 1909012574103198583
-    second: idle level 3_3
+      213: -5312459424824852721
+    second: Idle Level 4_3
   - first:
-      213: -6803355861311912138
-    second: idle level 3_4
+      213: -2166041574700776153
+    second: Idle Level 4_4
   - first:
-      213: 1045981953700386165
-    second: idle level 3_5
+      213: 1464923837111496338
+    second: Idle Level 4_5
   - first:
-      213: 8004010562668120053
-    second: idle level 3_6
+      213: 8988057436697201477
+    second: Idle Level 4_6
   - first:
-      213: -7108754349840732230
-    second: idle level 3_7
+      213: 5699407328862906809
+    second: Idle Level 4_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,177 +121,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idle level 3_0
+      name: Idle Level 4_0
       rect:
         serializedVersion: 2
-        x: 39
-        y: 190
-        width: 172
-        height: 403
+        x: 60
+        y: 197
+        width: 150
+        height: 442
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dabadbe6841c07ff0800000000000000
-      internalID: -40319879806604371
+      spriteID: 34349164de88c7940800000000000000
+      internalID: 5295257814545548099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle level 3_1
+      name: Idle Level 4_1
       rect:
         serializedVersion: 2
-        x: 247
-        y: 190
-        width: 178
-        height: 403
+        x: 278
+        y: 197
+        width: 151
+        height: 442
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 719b5f281754c81a0800000000000000
-      internalID: -6805988583032899305
+      spriteID: 346a74352c2a8d0c0800000000000000
+      internalID: -4550708467953326525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle level 3_2
+      name: Idle Level 4_2
       rect:
         serializedVersion: 2
-        x: 462
-        y: 190
-        width: 178
-        height: 403
+        x: 504
+        y: 197
+        width: 151
+        height: 442
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 367e13efca96e72e0800000000000000
-      internalID: -2126145782352320669
+      spriteID: e800a6418567965d0800000000000000
+      internalID: -3068791550404591474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle level 3_3
+      name: Idle Level 4_3
       rect:
         serializedVersion: 2
-        x: 684
-        y: 190
-        width: 171
-        height: 403
+        x: 729
+        y: 197
+        width: 150
+        height: 444
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77bdc2f52dc2e7a10800000000000000
-      internalID: 1909012574103198583
+      spriteID: f0f73abbc4a5646b0800000000000000
+      internalID: -5312459424824852721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle level 3_4
+      name: Idle Level 4_4
       rect:
         serializedVersion: 2
-        x: 902
-        y: 190
-        width: 170
-        height: 403
+        x: 954
+        y: 197
+        width: 150
+        height: 444
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6378eedc3ef9591a0800000000000000
-      internalID: -6803355861311912138
+      spriteID: 7258b3bf9aca0f1e0800000000000000
+      internalID: -2166041574700776153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle level 3_5
+      name: Idle Level 4_5
       rect:
         serializedVersion: 2
-        x: 1117
-        y: 190
-        width: 168
-        height: 403
+        x: 1176
+        y: 197
+        width: 152
+        height: 444
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 575d7c78b03148e00800000000000000
-      internalID: 1045981953700386165
+      spriteID: 29e6806e774745410800000000000000
+      internalID: 1464923837111496338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle level 3_6
+      name: Idle Level 4_6
       rect:
         serializedVersion: 2
-        x: 1324
-        y: 190
-        width: 179
-        height: 403
+        x: 1403
+        y: 197
+        width: 150
+        height: 444
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f7ce4e1335f31f60800000000000000
-      internalID: 8004010562668120053
+      spriteID: 54b052f2e9efbbc70800000000000000
+      internalID: 8988057436697201477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: idle level 3_7
+      name: Idle Level 4_7
       rect:
         serializedVersion: 2
-        x: 1539
-        y: 190
-        width: 179
-        height: 403
+        x: 1629
+        y: 197
+        width: 150
+        height: 442
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: abfea362591a85d90800000000000000
-      internalID: -7108754349840732230
+      spriteID: 9b9a123d4cc581f40800000000000000
+      internalID: 5699407328862906809
       vertices: []
       indices: 
       edges: []
@@ -300,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a28caf657061735469f3fc13cd648256
     internalID: 0
     vertices: []
     indices: 
@@ -310,14 +310,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      idle level 3_0: -40319879806604371
-      idle level 3_1: -6805988583032899305
-      idle level 3_2: -2126145782352320669
-      idle level 3_3: 1909012574103198583
-      idle level 3_4: -6803355861311912138
-      idle level 3_5: 1045981953700386165
-      idle level 3_6: 8004010562668120053
-      idle level 3_7: -7108754349840732230
+      Idle Level 4_0: 5295257814545548099
+      Idle Level 4_1: -4550708467953326525
+      Idle Level 4_2: -3068791550404591474
+      Idle Level 4_3: -5312459424824852721
+      Idle Level 4_4: -2166041574700776153
+      Idle Level 4_5: 1464923837111496338
+      Idle Level 4_6: 8988057436697201477
+      Idle Level 4_7: 5699407328862906809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
