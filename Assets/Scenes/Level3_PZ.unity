@@ -9357,7 +9357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589182a8025f23941b8ea0d866ab4132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTopDown
-  moveSpeed: 10
+  moveSpeed: 5
   anim: {fileID: 1136600969}
 --- !u!95 &1136600969
 Animator:
@@ -9754,7 +9754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PetiPassword
   idPeti: Peti#
-  radiusInteraksi: 1
+  radiusInteraksi: 2
   radiusDeteksi: 5
   idBarangHadiah: AC_2
   dialogBerhasil: {fileID: 11400000, guid: 31c95f2b1a46b464cbebfbdc20aa1040, type: 2}
@@ -9874,7 +9874,7 @@ Transform:
   m_GameObject: {fileID: 1372480930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.013101754, z: -0, w: 0.99991417}
-  m_LocalPosition: {x: -1.96, y: 9.96, z: 0.56}
+  m_LocalPosition: {x: -7.96, y: 9.96, z: 0.4}
   m_LocalScale: {x: 0.120234564, y: 0.11513098, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

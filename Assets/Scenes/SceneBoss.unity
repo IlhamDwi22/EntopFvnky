@@ -557,6 +557,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachinePipeline
+--- !u!1001 &373804290
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.06326
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.04026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454562442331574126, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160044554357820563, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
+      propertyPath: m_Name
+      value: PREFAB_FADER_SYSTEM
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 23ff8ba063a988d4a921179e897037cf, type: 3}
 --- !u!1 &445082677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,15 +1851,15 @@ MonoBehaviour:
   dataBossPhase1: {fileID: 11400000, guid: 2921f90521b23834a8c56b0648f47afb, type: 2}
   dataBossPhase2: {fileID: 11400000, guid: 8e56734fe13d6c24999dc022df12354a, type: 2}
   namaSceneRhythm: Combat_4
-  dialogSebelumBattle: {fileID: 11400000, guid: 2388c8cbd5865544a93822a73e1f79aa, type: 2}
-  dialogTransisiPhase: {fileID: 11400000, guid: 7580a7fb1ca9c224e846a43ddb4e7651, type: 2}
-  dialogSelesaiBoss: {fileID: 11400000, guid: 813d2a6673bf8c740887ce62eaf2ca73, type: 2}
+  dialogSebelumBattle: {fileID: 11400000, guid: 39eb1701c423217478b1818b9c040eec, type: 2}
+  dialogTransisiPhase: {fileID: 11400000, guid: e21bf595174bb0c4aa7f442f3b5e0b2e, type: 2}
+  dialogSelesaiBoss: {fileID: 11400000, guid: 8492323af12ed784f951e9a0a39016b6, type: 2}
   bossObject: {fileID: 214807539}
   bossAnimator: {fileID: 214807540}
   namaParameterJalan: IsWalking
   titikTujuanJalan: {fileID: 1999389189}
   kecepatanJalan: 2
-  namaSceneSetelahMenang: 
+  namaSceneSetelahMenang: Intro_CS 4
 --- !u!4 &974323750
 Transform:
   m_ObjectHideFlags: 0
@@ -2935,3 +2992,4 @@ SceneRoots:
   - {fileID: 974323750}
   - {fileID: 1999389189}
   - {fileID: 944815798}
+  - {fileID: 373804290}

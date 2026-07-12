@@ -11,7 +11,7 @@ public class PostBattleManager : MonoBehaviour
     private void Start()
     {
         if (panelPilihanRetry != null) panelPilihanRetry.SetActive(false);
-        playerMC = FindFirstObjectByType<PlayerOverworld>();
+        playerMC = FindAnyObjectByType<PlayerOverworld>();
 
         if (GlobalBattleState.kembaliDariBattle)
         {

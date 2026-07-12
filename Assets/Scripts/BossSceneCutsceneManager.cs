@@ -12,6 +12,8 @@ public class BossSceneCutsceneManager : MonoBehaviour
     public string namaSceneRhythm = "Gameplay";
 
     [Header("Dialog Alur Boss")]
+    [Tooltip("Dialog monolog saat Zero baru mendarat di neraka (sebelum KROWN muncul/jalan)")]
+    public DialogData dialogIntroMonolog;
     public DialogData dialogSebelumBattle;
     [Tooltip("Dialog setelah menang Phase 1 (Boss B muncul / Boss A kalah)")]
     public DialogData dialogTransisiPhase;
@@ -45,7 +47,7 @@ public class BossSceneCutsceneManager : MonoBehaviour
 
     private void Start()
     {
-        playerMC = FindFirstObjectByType<PlayerOverworld>();
+        playerMC = FindAnyObjectByType<PlayerOverworld>();
 
         // Jika Boss sudah kalah permanen, hancurkan objek bos/cutscene ini dari scene
         if (GlobalBattleState.CekPetiTerbuka(gameObject.name + "_Kalah"))
@@ -101,7 +103,15 @@ public class BossSceneCutsceneManager : MonoBehaviour
             if (rb != null) rb.linearVelocity = Vector2.zero;
         }
 
-        // Jalankan pergerakan Boss menghampiri Player
+        // 1. Putar monolog awal Zero ("Tempat ini... terasa seperti neraka")
+        if (dialogIntroMonolog != null && DialogManager.Instance != null)
+        {
+            bool monologSelesai = false;
+            DialogManager.Instance.MulaiDialog(dialogIntroMonolog, () => monologSelesai = true);
+            while (!monologSelesai) yield return null;
+        }
+
+        // 2. Jalankan pergerakan Boss menghampiri Player
         if (bossObject != null && titikTujuanJalan != null)
         {
             // Nyalakan parameter animasi jalan di Animator
@@ -132,7 +142,7 @@ public class BossSceneCutsceneManager : MonoBehaviour
             }
         }
 
-        // Setelah bos sampai, putar dialog sebelum battle
+        // Setelah bos sampai, putar dialog sebelum battle (KROWN menantang player)
         if (dialogSebelumBattle != null && DialogManager.Instance != null)
         {
             DialogManager.Instance.MulaiDialog(dialogSebelumBattle, () =>

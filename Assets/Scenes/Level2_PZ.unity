@@ -11548,7 +11548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589182a8025f23941b8ea0d866ab4132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTopDown
-  moveSpeed: 10
+  moveSpeed: 5
   anim: {fileID: 1028993857}
 --- !u!1 &1127655809
 GameObject:
@@ -13181,7 +13181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PetiPassword
   idPeti: LV2
-  radiusInteraksi: 1
+  radiusInteraksi: 2
   radiusDeteksi: 5
   idBarangHadiah: AC_1
   dialogBerhasil: {fileID: 11400000, guid: 31c95f2b1a46b464cbebfbdc20aa1040, type: 2}

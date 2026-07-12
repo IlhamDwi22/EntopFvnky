@@ -15,6 +15,6 @@ MonoBehaviour:
   namaMusuh: 
   visualMusuh: {fileID: 0}
   animasiMusuh: {fileID: 9100000, guid: 0159663a9d44a4e49893e4e78091cb69, type: 2}
-  tingkatKesulitan: 45
+  tingkatKesulitan: 21
   daftarLagu:
-  - {fileID: 11400000, guid: 6884e62e09ccf674d9845ff53d2a5fab, type: 2}
+  - {fileID: 11400000, guid: c458b54df34d0b04ab5e52cfdc191013, type: 2}

@@ -33,7 +33,7 @@ public class BossNPCSequence : MonoBehaviour
     {
         wasKembaliDariBattle = GlobalBattleState.kembaliDariBattle;
         wasPlayerMenang = GlobalBattleState.playerMenang;
-        playerMC = FindFirstObjectByType<PlayerOverworld>();
+        playerMC = FindAnyObjectByType<PlayerOverworld>();
     }
 
     private void Start()

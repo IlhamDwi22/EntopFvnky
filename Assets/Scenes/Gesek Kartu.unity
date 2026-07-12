@@ -617,8 +617,8 @@ MonoBehaviour:
   areaScanner: {fileID: 546827197}
   backgroundPintu: {fileID: 324032706}
   gambarPintuTerbuka: {fileID: -2304709214018316747, guid: f491445e2db0dd4458c8e166f5e26218, type: 3}
-  dialogBerhasil: {fileID: 11400000, guid: 2388c8cbd5865544a93822a73e1f79aa, type: 2}
-  dialogGagal: {fileID: 11400000, guid: 7580a7fb1ca9c224e846a43ddb4e7651, type: 2}
+  dialogBerhasil: {fileID: 11400000, guid: bb10634a2f2ec2249abb670814eb1c07, type: 2}
+  dialogGagal: {fileID: 11400000, guid: c304d4bf37464fc4c8a6293d6693eec0, type: 2}
 --- !u!1 &400820774
 GameObject:
   m_ObjectHideFlags: 0

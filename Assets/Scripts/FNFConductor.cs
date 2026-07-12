@@ -70,6 +70,12 @@ public class FNFConductor : MonoBehaviour
             }
         }
 
+        // Pastikan Animator yang dipegang oleh botAI juga memakai controller baru
+        if (botAI != null && botAI.botAnim != null && dataMusuh.animasiMusuh != null)
+        {
+            botAI.botAnim.runtimeAnimatorController = dataMusuh.animasiMusuh;
+        }
+
         int kesulitan = dataMusuh.tingkatKesulitan;
         float speedMultiplier = 1f + ((kesulitan - 50) / 100f); 
         
@@ -116,7 +122,11 @@ public class FNFConductor : MonoBehaviour
                 }
                 else
                 {
-                    EndBattle();
+                    // Hanya selesaikan pertarungan jika lagu benar-benar sudah mencapai bagian akhir (mencegah bug Alt-Tab)
+                    if (musicSource.clip != null && currentSongTime >= musicSource.clip.length - 0.5f)
+                    {
+                        EndBattle();
+                    }
                 }
             }
         }

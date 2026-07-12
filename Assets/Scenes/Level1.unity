@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 77593227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0.0004882635, w: 0.9999999}
-  m_LocalPosition: {x: -0.87, y: -2.08, z: -10}
+  m_LocalPosition: {x: -0.8685157, y: -0.56000066, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -369,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 193903090}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.0004882635, w: 0.9999999}
-  m_LocalPosition: {x: -0.87, y: -2.08, z: -10}
+  m_LocalPosition: {x: -0.8685157, y: -0.56000066, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6957,7 +6957,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7212743939725961781, guid: c224799bd1b63b84095c1ea3f117bf36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7060,6 +7060,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1085168412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085168413}
+  m_Layer: 0
+  m_Name: Titik_Kiri
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085168413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085168412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.14, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1157739358
 GameObject:
   m_ObjectHideFlags: 0
@@ -7457,7 +7488,7 @@ MonoBehaviour:
   namaSceneCombat: Combat_1
   dataMusuh: {fileID: 11400000, guid: 988c89a988d6eee4a8d99268ab1c623d, type: 2}
   dialogMenang: {fileID: 11400000, guid: f9b86735a08b6fa4f9b8b2c32715130b, type: 2}
-  namaSceneSetelahMenang: Level2
+  namaSceneSetelahMenang: Intro2_CS 1
   dialogKalah: {fileID: 11400000, guid: 0f1feacaf61b847468aa65e3ecb8ac8b, type: 2}
   butuhBarangQuest: 0
   IDBarangYangDibutuhkan: KunciLevel2
@@ -7657,7 +7688,7 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.5
+  m_ScreenY: 0.69
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
@@ -9582,6 +9613,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1599002927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599002928}
+  m_Layer: 0
+  m_Name: Titik_Kanan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599002928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599002927}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 63.65, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667623201
 GameObject:
   m_ObjectHideFlags: 0
@@ -9883,7 +9945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39d500dede9bc24a8e79e29fc4250f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerOverworld
-  moveSpeed: 8
+  moveSpeed: 5
   jumpForce: 15
   groundCheck: {fileID: 563389522}
   groundCheckRadius: 0.2
@@ -10027,7 +10089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -514, y: -0}
+  m_AnchoredPosition: {x: -514, y: 0}
   m_SizeDelta: {x: 372.89, y: 114.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768179222
@@ -10586,6 +10648,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925417220}
   m_CullTransparentMesh: 1
+--- !u!1 &1980989545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1980989547}
+  - component: {fileID: 1980989546}
+  m_Layer: 0
+  m_Name: Traffic_Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1980989546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980989545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8315b5e5b137024ca8283b542fdd6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrafficSpawner
+  prefabsMobil:
+  - {fileID: 3736508625294482991, guid: 325accd75b48d79499c2c78e39ccde6e, type: 3}
+  titikKiri: {fileID: 1085168413}
+  titikKanan: {fileID: 1599002928}
+  jedaMin: 5
+  jedaMax: 10
+  kecepatanMin: 20
+  kecepatanMax: 30
+  mobilBawaanHadapKiri: 0
+--- !u!4 &1980989547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980989545}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.45022, y: 1.21956, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2112228450
 GameObject:
   m_ObjectHideFlags: 0
@@ -17185,3 +17300,6 @@ SceneRoots:
   - {fileID: 7635502240626072689}
   - {fileID: 1667623203}
   - {fileID: 955298967}
+  - {fileID: 1085168413}
+  - {fileID: 1599002928}
+  - {fileID: 1980989547}

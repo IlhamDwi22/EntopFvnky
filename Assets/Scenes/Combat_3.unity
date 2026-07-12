@@ -1855,7 +1855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b137d4eb26b8c44293383de94327064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatTester
-  musuhTes: {fileID: 11400000, guid: 988c89a988d6eee4a8d99268ab1c623d, type: 2}
+  musuhTes: {fileID: 11400000, guid: 5e9fec6d4ffe7fa40bee89943fbd2a9c, type: 2}
 --- !u!1 &1637499715
 GameObject:
   m_ObjectHideFlags: 0

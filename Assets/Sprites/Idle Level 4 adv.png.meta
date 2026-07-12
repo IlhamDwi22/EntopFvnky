@@ -1,0 +1,349 @@
+fileFormatVersion: 2
+guid: 131cc2c108ca86d408169d6e22f0a728
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5074083512473360487
+    second: Idle Level 4 adv_0
+  - first:
+      213: -6297533744380443137
+    second: Idle Level 4 adv_1
+  - first:
+      213: -294050373322724281
+    second: Idle Level 4 adv_2
+  - first:
+      213: 7406381983176350598
+    second: Idle Level 4 adv_3
+  - first:
+      213: 43085680784956921
+    second: Idle Level 4 adv_4
+  - first:
+      213: 7241437894421605773
+    second: Idle Level 4 adv_5
+  - first:
+      213: 7666736638888014526
+    second: Idle Level 4 adv_6
+  - first:
+      213: 1075248799763014320
+    second: Idle Level 4 adv_7
+  - first:
+      213: 8717529531837434384
+    second: Idle Level 4 adv_8
+  - first:
+      213: 92511416027358656
+    second: Idle Level 4 adv_9
+  - first:
+      213: -1392997994387992627
+    second: Idle Level 4 adv_10
+  - first:
+      213: 5256435156216241401
+    second: Idle Level 4 adv_11
+  - first:
+      213: -5659026415128155734
+    second: Idle Level 4 adv_12
+  - first:
+      213: 4307307423381743724
+    second: Idle Level 4 adv_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 30
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Idle Level 4 adv_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 225
+        width: 170
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76814a92214ca6640800000000000000
+      internalID: 5074083512473360487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Level 4 adv_2
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 225
+        width: 170
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74c27005eb25bebf0800000000000000
+      internalID: -294050373322724281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Level 4 adv_4
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 225
+        width: 170
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fdd71ac232199000800000000000000
+      internalID: 43085680784956921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Level 4 adv_7
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 225
+        width: 171
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b22a03261d0cee00800000000000000
+      internalID: 1075248799763014320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Level 4 adv_8
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 225
+        width: 170
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01ac528fbe2eaf870800000000000000
+      internalID: 8717529531837434384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Level 4 adv_9
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 225
+        width: 167
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c5aaf984aaa84100800000000000000
+      internalID: 92511416027358656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Level 4 adv_10
+      rect:
+        serializedVersion: 2
+        x: 1557
+        y: 225
+        width: 170
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcf0cab54b31bace0800000000000000
+      internalID: -1392997994387992627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle Level 4 adv_11
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 225
+        width: 170
+        height: 433
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fcd42fbceb92f840800000000000000
+      internalID: 5256435156216241401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 53fdb628452fd8e4392bb70719964fb8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Idle Level 4 adv_0: 5074083512473360487
+      Idle Level 4 adv_1: -6297533744380443137
+      Idle Level 4 adv_10: -1392997994387992627
+      Idle Level 4 adv_11: 5256435156216241401
+      Idle Level 4 adv_12: -5659026415128155734
+      Idle Level 4 adv_13: 4307307423381743724
+      Idle Level 4 adv_2: -294050373322724281
+      Idle Level 4 adv_3: 7406381983176350598
+      Idle Level 4 adv_4: 43085680784956921
+      Idle Level 4 adv_5: 7241437894421605773
+      Idle Level 4 adv_6: 7666736638888014526
+      Idle Level 4 adv_7: 1075248799763014320
+      Idle Level 4 adv_8: 8717529531837434384
+      Idle Level 4 adv_9: 92511416027358656
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
