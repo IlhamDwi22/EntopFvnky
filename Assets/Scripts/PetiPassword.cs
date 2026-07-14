@@ -53,6 +53,8 @@ public class PetiPassword : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         CekRadiusPlayer();
 
         if (playerDiDekat && !sudahTerbuka && Input.GetKeyDown(KeyCode.E))

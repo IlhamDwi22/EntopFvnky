@@ -42,6 +42,11 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
+        if (PauseManager.Instance != null && PauseManager.Instance.isPaused)
+        {
+            return;
+        }
+
         if(Input.GetKeyDown(KeyCode.B))
         {
             ToggleInventory();

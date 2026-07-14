@@ -76,6 +76,8 @@ public class FNFScoring : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (KeyMappingManager.Instance == null) return;
 
         // 1. DETEKSI PUKULAN AWAL

@@ -45,6 +45,8 @@ public class PintuTerkunci : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         CekRadiusPlayer();
 
         if (playerDiDekat && Input.GetKeyDown(KeyCode.E))

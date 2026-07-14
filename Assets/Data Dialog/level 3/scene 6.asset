@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 829afb2c03498d94999e8f3fac0af189, type: 3}
-  m_Name: Intro3 CS
+  m_Name: scene 6
   m_EditorClassIdentifier: Assembly-CSharp::DialogData
   daftarPercakapan:
-  - namaPembicara: 
-    kalimat: Tiba Tiba Sesosok Kegelapan Menghampiriku
-  - namaPembicara: 
-    kalimat: Semuanya Menjadi HItam....
-  - namaPembicara: 
-    kalimat: Aku merasa semua berubah dan berasa seperti "neraka"
+  - namaPembicara: Zero
+    kalimat: .......
+  - namaPembicara: Velvet
+    kalimat: Tch Dasar Pecundang !!!

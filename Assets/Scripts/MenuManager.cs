@@ -9,11 +9,14 @@ public class MenuManager : MonoBehaviour
     public GameObject titlePanel;
     public GameObject menuPanel;
     public GameObject optionsPanel;
+    public GameObject savePanel;
 
     [Header("Navigation Buttons")]
     public GameObject firstSelectedButton; // Tombol pertama yang disorot otomatis di Main Menu
     public GameObject optionsFirstButton;  // Elemen pertama yang disorot di panel Options (misal: Slider)
     public GameObject optionsOpenButton;   // Tombol "Studio Config" di menu utama untuk kembali disorot
+    public GameObject saveFirstButton;     // Tombol pertama yang disorot di panel Save
+    public GameObject saveOpenButton;      // Tombol "Save Game" di menu utama untuk kembali disorot
 
     [Header("Audio Setup")]
     public AudioSource sfxSource;
@@ -24,6 +27,7 @@ public class MenuManager : MonoBehaviour
     public Transform titleCameraTarget;   // Posisi kamera saat di Title Screen
     public Transform menuCameraTarget;    // Posisi kamera saat di Main Menu
     public Transform optionsCameraTarget; // Posisi kamera saat di Options
+    public Transform saveCameraTarget;    // Posisi kamera saat di Save/Load
     
     [Range(0.1f, 2f)]
     public float slideDuration = 0.4f; // Kecepatan geser (semakin kecil semakin cepat)
@@ -100,6 +104,44 @@ public class MenuManager : MonoBehaviour
             menuCameraTarget, 
             optionsOpenButton
         ));
+    }
+
+    // Fungsi untuk tombol "Save Game" di Menu Utama
+    public void OpenSavePanel()
+    {
+        if (isTransitioning) return;
+
+        // Geser ke Save Panel
+        StartCoroutine(SlideMenuTransition(
+            menuPanel, 
+            savePanel, 
+            saveCameraTarget, 
+            saveFirstButton
+        ));
+    }
+
+    // Fungsi untuk tombol "Back" di dalam Save Panel
+    public void CloseSavePanel()
+    {
+        if (isTransitioning) return;
+
+        // Kembali ke Menu Utama
+        StartCoroutine(SlideMenuTransition(
+            savePanel, 
+            menuPanel, 
+            menuCameraTarget, 
+            saveOpenButton
+        ));
+    }
+
+    // Fungsi untuk mengeluarkan game (Quit Game)
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // Menghentikan mode Play di Unity Editor
+        #else
+        Application.Quit(); // Mengeluarkan game asli yang sudah dibuild
+        #endif
     }
 
     /// <summary>

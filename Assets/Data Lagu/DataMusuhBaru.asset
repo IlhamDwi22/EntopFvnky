@@ -17,4 +17,4 @@ MonoBehaviour:
   animasiMusuh: {fileID: 9100000, guid: 5ede9c5ea8863644ca070f8dd57873c6, type: 2}
   tingkatKesulitan: 10
   daftarLagu:
-  - {fileID: 11400000, guid: 151e78f5d721b0c4e9ab42b16e4233c7, type: 2}
+  - {fileID: 11400000, guid: 4a9e8b22352b0984aa961dadc7576754, type: 2}

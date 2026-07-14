@@ -120,6 +120,8 @@ public class DialogManager : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         // Deteksi input pemain: Klik Kiri Mouse, tombol Spasi, atau E
         if (panelDialog != null && panelDialog.activeSelf && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E)))
         {

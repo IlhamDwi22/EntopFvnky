@@ -66,6 +66,8 @@ public class KertasPetunjuk : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f && !sedangMembaca) return;
+
         CekRadiusPlayer();
 
         // Logika saat tombol E ditekan

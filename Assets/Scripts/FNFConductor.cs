@@ -37,6 +37,7 @@ public class FNFConductor : MonoBehaviour
     private int nextNoteIndex = 0;
     private float introTimer = 0f;
     private float songDelay = 1f;
+    private bool wasMusicPlayingBeforePause = false;
 
     private struct BPMChange { public float tick; public float timeInSeconds; public float bpm; }
     private List<BPMChange> bpmHistory = new List<BPMChange>();
@@ -96,6 +97,25 @@ public class FNFConductor : MonoBehaviour
 
     private void Update()
     {
+        // Penanganan Jeda (Pause)
+        if (Time.timeScale == 0f)
+        {
+            if (musicSource != null && musicSource.isPlaying)
+            {
+                musicSource.Pause();
+                wasMusicPlayingBeforePause = true;
+            }
+            return; // Hentikan pemrosesan note/lagu
+        }
+        else
+        {
+            if (wasMusicPlayingBeforePause && musicSource != null)
+            {
+                musicSource.UnPause();
+                wasMusicPlayingBeforePause = false;
+            }
+        }
+
         if (!isSongPlaying || battleEnded) return;
 
         if (musicSource != null)

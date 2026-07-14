@@ -51,6 +51,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SceneBoss.unity
     guid: 1ed123fd48e19284e82bc1389c3a28eb
   - enabled: 1
+    path: Assets/Scenes/Intro_CS 4.unity
+    guid: c0ec35fce9fa60f40b0a9dcf5dbed3f1
+  - enabled: 1
     path: Assets/Scenes/Combat_4.unity
     guid: 9bf3a655c49d625499a40192cba7fe9b
   - enabled: 1

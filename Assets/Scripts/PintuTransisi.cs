@@ -54,6 +54,8 @@ public class PintuTransisi : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         CekRadiusPlayer();
 
         // Jika player ada di dekat pintu dan menekan E

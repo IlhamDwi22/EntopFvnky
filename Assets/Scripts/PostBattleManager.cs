@@ -55,6 +55,14 @@ public class PostBattleManager : MonoBehaviour
 
     private void PindahKeSceneSelanjutnya()
     {
+        // Jika ada skrip sekuens kematian kustom (seperti VelvetDefeatSequence) di scene,
+        // jangan pindah scene di sini. Sekuens kustom tersebut yang akan mengurus transisinya.
+        if (FindAnyObjectByType<VelvetDefeatSequence>() != null)
+        {
+            if (playerMC != null) playerMC.enabled = false;
+            return;
+        }
+
         if (!string.IsNullOrEmpty(GlobalBattleState.sceneSetelahMenang))
         {
             if (SceneFader.Instance != null) SceneFader.Instance.PindahSceneDenganFade(GlobalBattleState.sceneSetelahMenang);
