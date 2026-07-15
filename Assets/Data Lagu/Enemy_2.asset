@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7383827129da489fba43228915319, type: 3}
   m_Name: Enemy_2
   m_EditorClassIdentifier: Assembly-CSharp::OpponentData
-  namaMusuh: 
-  visualMusuh: {fileID: 0}
+  namaMusuh: Ryke
+  visualMusuh: {fileID: -6531429506156146080, guid: 76eff4c14cf07d6439724568ae557e22, type: 3}
   animasiMusuh: {fileID: 9100000, guid: 2627406637e8d0544b0b799d0f1f359e, type: 2}
   tingkatKesulitan: 35
   daftarLagu:

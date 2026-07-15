@@ -34,8 +34,12 @@ public class PetiPassword : MonoBehaviour
 
     private void Awake()
     {
-        int angkaAcak = Random.Range(0, 10000);
-        passwordRahasiaSaatIni = angkaAcak.ToString("D4"); 
+        // Hanya buat password acak baru jika tidak ada password yang di-load dari save game
+        if (string.IsNullOrEmpty(passwordRahasiaSaatIni))
+        {
+            int angkaAcak = Random.Range(0, 10000);
+            passwordRahasiaSaatIni = angkaAcak.ToString("D4"); 
+        }
     }
 
     private void Start()

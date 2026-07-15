@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     public GameObject menuPanel;
     public GameObject optionsPanel;
     public GameObject savePanel;
+    public GameObject panel2Player;
 
     [Header("Navigation Buttons")]
     public GameObject firstSelectedButton; // Tombol pertama yang disorot otomatis di Main Menu
@@ -17,6 +18,8 @@ public class MenuManager : MonoBehaviour
     public GameObject optionsOpenButton;   // Tombol "Studio Config" di menu utama untuk kembali disorot
     public GameObject saveFirstButton;     // Tombol pertama yang disorot di panel Save
     public GameObject saveOpenButton;      // Tombol "Save Game" di menu utama untuk kembali disorot
+    public GameObject firstSelectedButton2Player; // Tombol pertama yang disorot di panel 2-Player
+    public GameObject openButton2Player;      // Tombol "2 Player Mode" di menu utama untuk kembali disorot
 
     [Header("Audio Setup")]
     public AudioSource sfxSource;
@@ -28,6 +31,7 @@ public class MenuManager : MonoBehaviour
     public Transform menuCameraTarget;    // Posisi kamera saat di Main Menu
     public Transform optionsCameraTarget; // Posisi kamera saat di Options
     public Transform saveCameraTarget;    // Posisi kamera saat di Save/Load
+    public Transform targetCamera2Player; // Posisi kamera saat di pemilihan 2-Player
     
     [Range(0.1f, 2f)]
     public float slideDuration = 0.4f; // Kecepatan geser (semakin kecil semakin cepat)
@@ -44,6 +48,9 @@ public class MenuManager : MonoBehaviour
         titlePanel.SetActive(true);
         menuPanel.SetActive(false);
         if (optionsPanel != null) optionsPanel.SetActive(false);
+
+        // Reset password brankas rahasia statis agar game baru mengacak ulang password
+        PetiPassword.passwordRahasiaSaatIni = "";
 
         // Posisikan kamera di titik awal (Title) secara instan
         if (mainCamera != null && titleCameraTarget != null)
@@ -131,6 +138,34 @@ public class MenuManager : MonoBehaviour
             menuPanel, 
             menuCameraTarget, 
             saveOpenButton
+        ));
+    }
+
+    // Fungsi untuk membuka panel pemilihan 2-Player
+    public void Open2PlayerPanel()
+    {
+        if (isTransitioning) return;
+
+        // Geser kamera ke target 2-Player Panel
+        StartCoroutine(SlideMenuTransition(
+            menuPanel, 
+            panel2Player, 
+            targetCamera2Player, 
+            firstSelectedButton2Player
+        ));
+    }
+
+    // Fungsi untuk menutup panel pemilihan 2-Player (Kembali ke Menu Utama)
+    public void Close2PlayerPanel()
+    {
+        if (isTransitioning) return;
+
+        // Kembali ke Menu Utama
+        StartCoroutine(SlideMenuTransition(
+            panel2Player, 
+            menuPanel, 
+            menuCameraTarget, 
+            openButton2Player
         ));
     }
 

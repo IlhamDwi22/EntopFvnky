@@ -18,6 +18,7 @@ public class SaveData
     public List<string> daftarPintuTerbuka;
 
     public string waktuSimpan;
+    public string passwordPetiRahasia;
 
     // Memori Puzzle
     public string puzzle_sceneAsal;
@@ -40,6 +41,7 @@ public class SaveManager : MonoBehaviour
 
     private bool isPendingLoad = false;
     private Vector3 savedPlayerPosition;
+    private List<RuntimeItemSaveData> loadedRuntimeItems;
 
     private void Awake()
     {
@@ -146,6 +148,7 @@ public class SaveManager : MonoBehaviour
         data.puzzle_idPintuGlobal = GlobalBattleState.puzzle_idPintuGlobal;
         data.puzzle_sceneTujuan = GlobalBattleState.puzzle_sceneTujuan;
         data.puzzle_idPintuTujuan = GlobalBattleState.puzzle_idPintuTujuan;
+        data.passwordPetiRahasia = PetiPassword.passwordRahasiaSaatIni;
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetSavePath(slot), json);
@@ -171,34 +174,16 @@ public class SaveManager : MonoBehaviour
         GlobalBattleState.daftarPetiTerbuka = new List<string>(data.daftarPetiTerbuka);
         GlobalBattleState.daftarPintuTerbuka = new List<string>(data.daftarPintuTerbuka);
 
-        GlobalBattleState.databaseRuntime.Clear();
-        ItemDatabase db = (InventoryManager.Instance != null) ? InventoryManager.Instance.itemDatabase : null;
-
-        foreach (var itemSave in data.databaseRuntime)
-        {
-            Sprite spriteIkon = null;
-            if (db != null)
-            {
-                foreach (var itemData in db.allItems)
-                {
-                    if (itemData != null && itemData.itemID == itemSave.id)
-                    {
-                        spriteIkon = itemData.ikonBarang;
-                        break;
-                    }
-                }
-            }
-            GlobalBattleState.TambahItemRuntime(itemSave.id, spriteIkon, itemSave.isiTeks);
-        }
-
         GlobalBattleState.puzzle_sceneAsal = data.puzzle_sceneAsal;
         GlobalBattleState.puzzle_idBarangWajib = data.puzzle_idBarangWajib;
         GlobalBattleState.puzzle_idPintuGlobal = data.puzzle_idPintuGlobal;
         GlobalBattleState.puzzle_sceneTujuan = data.puzzle_sceneTujuan;
         GlobalBattleState.puzzle_idPintuTujuan = data.puzzle_idPintuTujuan;
+        PetiPassword.passwordRahasiaSaatIni = data.passwordPetiRahasia;
 
-        isPendingLoad = true;
+        loadedRuntimeItems = data.databaseRuntime;
         savedPlayerPosition = new Vector3(data.playerPosX, data.playerPosY, data.playerPosZ);
+        isPendingLoad = true;
 
         SceneManager.LoadScene(data.namaScene);
 
@@ -213,6 +198,51 @@ public class SaveManager : MonoBehaviour
 
             // Reset waktu agar game berjalan kembali setelah di-load dari kondisi pause
             Time.timeScale = 1f;
+
+            // Rekonstruksi database runtime item (memulihkan sprite dari ItemDatabase di scene baru)
+            if (loadedRuntimeItems != null)
+            {
+                GlobalBattleState.databaseRuntime.Clear();
+                ItemDatabase db = (InventoryManager.Instance != null) ? InventoryManager.Instance.itemDatabase : null;
+
+                foreach (var itemSave in loadedRuntimeItems)
+                {
+                    Sprite spriteIkon = null;
+                    if (db != null && db.allItems != null)
+                    {
+                        foreach (var itemData in db.allItems)
+                        {
+                            if (itemData != null && itemData.itemID == itemSave.id)
+                            {
+                                spriteIkon = itemData.ikonBarang;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Fallback: Jika tidak ditemukan di ItemDatabase, cari dari KertasPetunjuk yang ada di scene
+                    if (spriteIkon == null)
+                    {
+                        KertasPetunjuk[] semuaKertas = FindObjectsByType<KertasPetunjuk>();
+                        foreach (var kertas in semuaKertas)
+                        {
+                            if (kertas != null)
+                            {
+                                string kertasId = string.IsNullOrEmpty(kertas.idKertas) ? kertas.gameObject.name : kertas.idKertas;
+                                if (kertasId == itemSave.id)
+                                {
+                                    SpriteRenderer sr = kertas.GetComponent<SpriteRenderer>();
+                                    if (sr != null) spriteIkon = sr.sprite;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    GlobalBattleState.TambahItemRuntime(itemSave.id, spriteIkon, itemSave.isiTeks);
+                }
+                loadedRuntimeItems = null; // Bersihkan memori temp setelah berhasil dimuat
+            }
 
             Rigidbody2D rb;
             Transform playerTr = DapatkanPlayerTransform(out rb);

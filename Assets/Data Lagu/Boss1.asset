@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7383827129da489fba43228915319, type: 3}
   m_Name: Boss1
   m_EditorClassIdentifier: Assembly-CSharp::OpponentData
-  namaMusuh: Nama Musuh
-  visualMusuh: {fileID: 0}
+  namaMusuh: Krown
+  visualMusuh: {fileID: 783217574279282422, guid: 351d2ede346c0c44499f7c0b655bc1cf, type: 3}
   animasiMusuh: {fileID: 9100000, guid: 3eddd8ad339066f4ca4d3e73a034b0b0, type: 2}
   tingkatKesulitan: 45
   daftarLagu:
