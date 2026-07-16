@@ -278,19 +278,33 @@ public class Menu2PManager : MonoBehaviour
                 string folderName = Path.GetFileName(dir);
                 
                 string audioFile = "";
-                string[] audioExtensions = { "*.mp3", "*.ogg", "*.wav" };
-                foreach (var ext in audioExtensions)
-                {
-                    string[] files = Directory.GetFiles(dir, ext);
-                    if (files.Length > 0) { audioFile = files[0]; break; }
-                }
-
                 string chartFile = "";
-                string[] chartExtensions = { "*.chart", "*.txt" };
-                foreach (var ext in chartExtensions)
+
+                try
                 {
-                    string[] files = Directory.GetFiles(dir, ext);
-                    if (files.Length > 0) { chartFile = files[0]; break; }
+                    string[] allFiles = Directory.GetFiles(dir);
+                    foreach (string file in allFiles)
+                    {
+                        string fileNameLower = Path.GetFileName(file).ToLower();
+                        
+                        // Abaikan file metadata Unity
+                        if (fileNameLower.EndsWith(".meta")) continue;
+
+                        Debug.Log($"[Menu2PManager] Memindai file: {fileNameLower} di folder {folderName}");
+
+                        if (fileNameLower.Contains(".mp3") || fileNameLower.Contains(".ogg") || fileNameLower.Contains(".wav"))
+                        {
+                            if (string.IsNullOrEmpty(audioFile)) audioFile = file;
+                        }
+                        else if (fileNameLower.Contains(".chart") || fileNameLower.Contains(".txt"))
+                        {
+                            if (string.IsNullOrEmpty(chartFile)) chartFile = file;
+                        }
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError($"[Menu2PManager] Gagal membaca folder lagu {folderName}: {e.Message}");
                 }
 
                 if (!string.IsNullOrEmpty(audioFile) && !string.IsNullOrEmpty(chartFile))
@@ -328,6 +342,11 @@ public class Menu2PManager : MonoBehaviour
                     }
 
                     semuaLagu.Add(s);
+                    Debug.Log($"[Menu2PManager] Berhasil mendeteksi lagu custom: {s.judulLagu}");
+                }
+                else
+                {
+                    Debug.LogWarning($"[Menu2PManager] Melewati folder {folderName}. File Audio: {(string.IsNullOrEmpty(audioFile) ? "TIDAK DITEMUKAN" : Path.GetFileName(audioFile))}, File Chart: {(string.IsNullOrEmpty(chartFile) ? "TIDAK DITEMUKAN" : Path.GetFileName(chartFile))}");
                 }
             }
         }

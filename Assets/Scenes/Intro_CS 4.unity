@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneManager
   dialogNarasi: {fileID: 11400000, guid: c5780efd54e174c4b987e886d9c6831c, type: 2}
-  namaSceneBerikutnya: EndScene
+  namaSceneBerikutnya: PostCreditScene
   idPintuTujuan: 
 --- !u!4 &288489119
 Transform:

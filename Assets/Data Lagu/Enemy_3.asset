@@ -15,6 +15,6 @@ MonoBehaviour:
   namaMusuh: Velvet
   visualMusuh: {fileID: -181837612720711962, guid: 4ef9bbbcfc1e00e498652e586dd287be, type: 3}
   animasiMusuh: {fileID: 9100000, guid: 0159663a9d44a4e49893e4e78091cb69, type: 2}
-  tingkatKesulitan: 21
+  tingkatKesulitan: 30
   daftarLagu:
   - {fileID: 11400000, guid: fdaa73929327c8e4390e0d3c034b4029, type: 2}

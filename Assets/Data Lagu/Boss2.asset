@@ -15,6 +15,6 @@ MonoBehaviour:
   namaMusuh: Krown The Boss
   visualMusuh: {fileID: 5255096564784306290, guid: 0154cb6436c3edf4c8b27090e9dc6413, type: 3}
   animasiMusuh: {fileID: 9100000, guid: 5ede9c5ea8863644ca070f8dd57873c6, type: 2}
-  tingkatKesulitan: 55
+  tingkatKesulitan: 50
   daftarLagu:
   - {fileID: 11400000, guid: 1043f1554bde9994c8c1b507a069b29d, type: 2}

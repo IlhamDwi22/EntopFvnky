@@ -15,6 +15,6 @@ MonoBehaviour:
   namaMusuh: Street Rapper
   visualMusuh: {fileID: 4466468851715550486, guid: 60ece351aef40854795d4b9d8643731a, type: 3}
   animasiMusuh: {fileID: 9100000, guid: 86ecb87884134e3449a426ed264c76f1, type: 2}
-  tingkatKesulitan: 15
+  tingkatKesulitan: 10
   daftarLagu:
   - {fileID: 11400000, guid: 168ea6949b81fc14ea48aa935c9729d1, type: 2}

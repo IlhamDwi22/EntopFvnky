@@ -8752,7 +8752,6 @@ GameObject:
   - component: {fileID: 1625450909}
   - component: {fileID: 1625450908}
   - component: {fileID: 1625450907}
-  - component: {fileID: 1625450910}
   m_Layer: 0
   m_Name: RHYTHM_SYSTEM
   m_TagString: Untagged
@@ -8948,19 +8947,6 @@ MonoBehaviour:
   spawnAheadTime: 14
   speed: 0
   audioOffsetAdjustment: 0
---- !u!114 &1625450910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625450903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b137d4eb26b8c44293383de94327064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatTester
-  musuhTes: {fileID: 11400000, guid: 5e9fec6d4ffe7fa40bee89943fbd2a9c, type: 2}
 --- !u!1 &1637499715
 GameObject:
   m_ObjectHideFlags: 0

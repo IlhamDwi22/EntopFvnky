@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI; // Wajib untuk mengakses Text UI Legacy
 using UnityEngine.EventSystems;
 
-public class StylizedButton : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
+public class StylizedButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Text buttonText; // Menggunakan Text UI Legacy
     private Vector3 originalScale;
@@ -17,8 +17,12 @@ public class StylizedButton : MonoBehaviour, ISelectHandler, IDeselectHandler, I
         // Mengambil komponen teks Legacy dari anak objek (Text)
         buttonText = GetComponentInChildren<Text>();
         originalScale = transform.localScale;
-        
-        if (buttonText != null) buttonText.color = normalColor;
+    }
+
+    void OnEnable()
+    {
+        // Pastikan tombol selalu kembali ke warna/skala normal saat aktif pertama kali
+        ResetButton();
     }
 
     // Dipanggil saat disentuh Mouse
@@ -33,18 +37,6 @@ public class StylizedButton : MonoBehaviour, ISelectHandler, IDeselectHandler, I
         ResetButton();
     }
 
-    // Dipanggil saat dipilih via Keyboard/Gamepad (Tanda Panah/WASD)
-    public void OnSelect(BaseEventData eventData)
-    {
-        HighlightButton();
-    }
-
-    // Dipanggil saat pindah ke tombol lain via Keyboard/Gamepad
-    public void OnDeselect(BaseEventData eventData)
-    {
-        ResetButton();
-    }
-
     private void HighlightButton()
     {
         transform.localScale = originalScale * hoverScale;
@@ -53,6 +45,9 @@ public class StylizedButton : MonoBehaviour, ISelectHandler, IDeselectHandler, I
 
     private void ResetButton()
     {
+        // Mengamankan kondisi jika originalScale belum tersimpan (misal di awal program)
+        if (originalScale == Vector3.zero) originalScale = transform.localScale;
+
         transform.localScale = originalScale;
         if (buttonText != null) buttonText.color = normalColor;
     }
