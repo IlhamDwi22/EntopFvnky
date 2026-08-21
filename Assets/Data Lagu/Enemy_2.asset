@@ -15,6 +15,6 @@ MonoBehaviour:
   namaMusuh: Ryke
   visualMusuh: {fileID: -6531429506156146080, guid: 76eff4c14cf07d6439724568ae557e22, type: 3}
   animasiMusuh: {fileID: 9100000, guid: 2627406637e8d0544b0b799d0f1f359e, type: 2}
-  tingkatKesulitan: 35
+  tingkatKesulitan: 25
   daftarLagu:
   - {fileID: 11400000, guid: 4a9e8b22352b0984aa961dadc7576754, type: 2}
