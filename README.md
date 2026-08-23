@@ -209,12 +209,12 @@ Beberapa sistem dibuat dengan pendekatan modular agar dapat dikembangkan dan dip
 
 ## 👥 Team
 
-| No. | Name | NIM | Role & Contribution |
-| --- | --- | --- | --- |
-| 1 | **Abiyyu Daffa Hidastya** | 3.34.24.1.01 | **Map & Environment** — Membuat map dan mencari aset credit scene. |
-| 2 | **Ilham Dwipangga Sunarko Putra** | 3.34.24.1.10 | **Game Design & Documentation** — Membuat GDD, aset objek interaktif, dan membantu perancangan gameplay. |
-| 3 | **Is\'ad Sabda Putra Mujiono** | 3.34.24.1.11 | **Unity Developer** — Mengembangkan sistem gameplay dan implementasi game di Unity. |
-| 4 | **Maulana Azka Rifki S.** | 3.34.24.1.13 | **Asset & Audio** — Mencari dan membuat aset game serta menyesuaikan musik. |
+| No. | Name | Role & Contribution |
+| --- | --- | --- |
+| 1 | **Abiyyu Daffa Hidastya** | **Map & Environment** — Membuat map dan mencari aset credit scene. |
+| 2 | **Ilham Dwipangga Sunarko Putra** | **Game Design & Documentation** — Membuat GDD, aset objek interaktif, dan membantu perancangan gameplay. |
+| 3 | **Is\'ad Sabda Putra Mujiono** | **Unity Developer** — Mengembangkan sistem gameplay dan implementasi game di Unity. |
+| 4 | **Maulana Azka Rifki S.** | **Asset & Audio** — Mencari dan membuat aset game serta menyesuaikan musik. |
 
 ---
 
